@@ -1,5 +1,9 @@
 ### node etc ###
 
+node_modules
+.DS_Store
+client/dist/bundle.js
+
 # Logs
 logs
 *.log
