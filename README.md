@@ -4,7 +4,7 @@
 
 ## Team
 
-  - teamMember
+  - Kiyeon Park
   - teamMember
   - teamMember
   - teamMember
