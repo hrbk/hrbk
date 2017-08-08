@@ -5,7 +5,7 @@
 ## Team
 
   - teamMember
-  - teamMember
+  - Cameron Mehrabian
   - teamMember
   - teamMember
 
