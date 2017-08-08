@@ -7,7 +7,7 @@
   - teamMember
   - Cameron Mehrabian
   - teamMember
-  - teamMember
+  - Daniel Cervoni
 
 ## Table of Contents
 
