@@ -6,7 +6,7 @@
 
   - teamMember
   - teamMember
-  - teamMember
+  - Austin Reuter
   - teamMember
 
 ## Table of Contents
