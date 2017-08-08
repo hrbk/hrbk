@@ -4,10 +4,10 @@
 
 ## Team
 
-  - Cameron
   - teamMember
+  - Cameron Mehrabian
   - Austin Reuter
-  - teamMember
+  - Daniel Cervoni
 
 ## Table of Contents
 
