@@ -4,7 +4,7 @@
 
 ## Team
 
-  - teamMember
+  - Kiyeon Park
   - Cameron Mehrabian
   - Austin Reuter
   - Daniel Cervoni
