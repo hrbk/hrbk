@@ -7,7 +7,7 @@
   - teamMember
   - teamMember
   - teamMember
-  - teamMember
+  - Daniel Cervoni
 
 ## Table of Contents
 
