@@ -6,7 +6,7 @@
 
   - teamMember
   - Cameron Mehrabian
-  - teamMember
+  - Austin Reuter
   - Daniel Cervoni
 
 ## Table of Contents
