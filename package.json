@@ -8,9 +8,10 @@
     "node": ">=6.4.0"
   },
   "scripts": {
+    "start": "node server/index.js",
     "client": "webpack -d --watch",
-    "server": "nodemon server/index.js",
-    "test": "./node_modules/jshint/bin/jshint hello.js"
+    "test": "./node_modules/jshint/bin/jshint hello.js",
+    "server": "nodemon server/index.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
