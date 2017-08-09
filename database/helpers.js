@@ -28,6 +28,6 @@ var saveRow = function(model, row) {
   model.create(row)
 };
 
-exports.findAll = find;
-exports.saveRow = save;
+// exports.findAll = find;
+// exports.saveRow = saveRow;
 //exports.find = find;
