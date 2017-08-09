@@ -3,7 +3,7 @@
 node_modules
 npm-debug.log
 .DS_Store
-client/dist/bundle.js
+client/dist/bundle*
 /*.env
 
 # Logs
