@@ -1,5 +1,11 @@
 ### node etc ###
 
+node_modules
+npm-debug.log
+.DS_Store
+client/dist/bundle*
+/*.env
+
 # Logs
 logs
 *.log
