@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('../database');
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -11,5 +12,5 @@ app.get('/', function(req, res) {
 
 
 app.listen(port, () => {
-	console.log('process.env.PORT:', port);
+  console.log('process.env.PORT:', port);
 });
