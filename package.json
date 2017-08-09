@@ -10,9 +10,8 @@
   "scripts": {
     "start": "node server/index.js",
     "client": "webpack -d --watch",
-    "test": "./node_modules/jshint/bin/jshint hello.js",
     "server": "nodemon server/index.js",
-    "test-jest": "jest"
+    "test": "jest"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
