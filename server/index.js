@@ -1,5 +1,7 @@
 var express = require('express');
 var db = require('../database');
+var dbHelpers = require('../database/helpers')
+
 
 var app = express();
 var port = process.env.PORT || 8080;
