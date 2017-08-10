@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as rb from 'react-bootstrap';
+import Search from './components/Search.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        APP
+        <Search></Search>
       </div>
     );
   }
