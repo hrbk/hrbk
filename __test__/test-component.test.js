@@ -15,3 +15,5 @@ test('Test component have "Hello" in its p tag', () => {
   const p = wrapper.find('.test');
   expect(p.text()).toBe('Hello');
 });
+
+
