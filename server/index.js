@@ -12,6 +12,12 @@ app.get('/', function(req, res) {
   res.send('Hello World');
 });
 
+dbHelpers.find('*', 'profiles')
+
+dbHelpers.addUser('a', 'b', 'w', '2', '2')
+
+
+
 
 app.listen(port, () => {
 	console.log('process.env.PORT:', port);

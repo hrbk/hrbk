@@ -1,33 +1,46 @@
+const db = require('./index'); 
 
-/** 
- * find all rows from the db.
- * @func find 
-*/
-
-var findAll = function(model, query) {
+var find = function(query, table) {
 /**
- * @method
- * @param {} sequelize : id your table
- * @param {} query
- * @callback {} model <pathname> 
+ * @param {string} query: type of
+ * @param {string} table: id your table 
+ * to select all, pass '*' as query; 
 */
-  if (query) {
-  	return model.findAll(query)
-  } else {
-  	return model.findAll()
-  }
+
+  table = table || 'profiles';
+  var sql = 'SELECT ' + query + ' FROM ' + table;
+  db.query(sql);
 };
 
-var find = function(model, query) {
-  //query 
-  return model.find(query);
+var addUser = function(email, userphoto, firstname, lastname, password) {
+/**
+ * @param {string} 
+ * to select all, pass '*' as query
+*/
+  var sql = `
+  	INSERT INTO users (email, userphoto, firstname, lastname, password)
+    VALUES (` + email + ', ' + userphoto + ', ' + firstname + ', ' + lastname + ', ' + password + ')';
+  db.query(sql);
 };
 
-var saveRow = function(model, row) {
-  //save the row to the model;
-  model.create(row)
-};
+var dropTable = function(table) {
+  var sql = 'DROP TABLE ' + table;
+  db.query(sql);
+}
+//tests: 
 
-// exports.findAll = find;
-// exports.saveRow = saveRow;
-//exports.find = find;
+//before each test;
+//access db;
+   
+//1st
+  //add user into users;
+
+    addUser('aemail', 'aphoto', 'afirstname', 'alastname', 'apassword');
+    //check db table users;
+    var userTest = find('*', 'users')
+    console.log('user added ', userTest);
+    dropTable('users');
+
+
+exports.find = find;
+exports.addUser = addUser;
