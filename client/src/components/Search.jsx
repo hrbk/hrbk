@@ -32,12 +32,14 @@ class Search extends React.Component {
             <rb.Form inline>
               <rb.FormControl
                 type="text"
+                style={{marginTop: '20px'}}
                 value={this.state.searchTerm}
                 placeholder="Where to go?"
                 onChange={this.handleChange.bind(this)}>
               </rb.FormControl>
-              <rb.Button 
-                type="submit" 
+              <rb.Button
+                type="submit"
+                style={{marginTop: '20px'}}
                 onClick={this.search.bind(this)}
                 bsStyle="info">
                 Search
