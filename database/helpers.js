@@ -80,4 +80,6 @@ filterByOption('city', 'san francisco', function(err, res) {
 module.exports.find = find;
 module.exports.addUser = addUser;
 module.exports.filterByCity = filterByCity;
+module.exports.filterByOption = filterByOption;
+module.exports.addListing = addListing;
 
