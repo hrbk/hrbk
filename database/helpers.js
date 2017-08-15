@@ -62,19 +62,20 @@ var listing = {
 var filterByCity = function(city, callback) {
   var sql = `
     SELECT * FROM profiles WHERE city = "${city}";`;
-  db.query(sql, callback)
+  db.query(sql, (err, res) => callback(res));
 };
 
 var filterByOption = function(column, option, callback) {
   var sql = `
     SELECT * FROM profiles WHERE ${column} = "${option}";`;
-  db.query(sql, callback);
+  db.query(sql, (err, res) => callback(res)); //fn err,res inside
+  //once qurey sends response, call
 };
 
 //TEST: filter by city.
-filterByOption('city', 'san francisco', function(err, res) {
-  console.log('TEST: filterByOption:(city, san francisco)', res);
-});
+console.log(filterByOption('city', 'san francisco', (res) => {
+  console.log(res)}
+));
 //end of filter by city test
 
 module.exports.find = find;
