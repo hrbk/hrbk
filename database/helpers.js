@@ -1,7 +1,7 @@
 const db = require('./index'); 
 
 
-var find = function(query, table) {
+var find = function(query, table, callback) {
 /**
  * @param {string} query: type of
  * @param {string} table: id your table 
@@ -10,11 +10,11 @@ var find = function(query, table) {
   table = table || 'profiles';
   var sql = `SELECT ${query} FROM ${table};`;
   db.query(sql, function(err, res) {
-  	console.log(res); 
+    callback(res); 
   });
 };
 
-var addUser = function(email, userphoto, firstname, lastname, password) {
+var addUser = function(email, userphoto, firstname, lastname, password, callback) {
 /**
  * @param {string} 
  * to select all, pass '*' as query
@@ -22,9 +22,11 @@ var addUser = function(email, userphoto, firstname, lastname, password) {
   var options = [email, userphoto, firstname, lastname, password]; 
   
   var sql = `
-  	INSERT INTO users (email, userphoto, firstname, lastname, password)
+    INSERT INTO users (email, userphoto, firstname, lastname, password)
     VALUES (?, ?, ?, ?, ?);`;
-  db.query(sql, options);
+  db.query(sql, options, function(err, res) {
+    callback(res);
+  });
 };
 
 
