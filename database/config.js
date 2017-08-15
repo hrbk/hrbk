@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const Sequelize = require('sequelize'); 
 
 module.exports = (db) => {
   if (!db.queryAsync) {
