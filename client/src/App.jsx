@@ -1,10 +1,10 @@
-t from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import * as rb from 'react-bootstrap';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Search from './components/Search.jsx';
-var axios = require('axios');
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,10 +14,9 @@ class App extends React.Component {
       filteredHomes: [],
     }
   }
-
+  
   onSearch(searchFilter) {
     axios.get('/search') //{city: searchFilter[0], state: searchFilter[1]}
-
     .then(function(response) {
       this.setState({
         filteredHomes: response //where data is held in axios response??
@@ -34,7 +33,7 @@ class App extends React.Component {
       <div>
         <Header />
         <Main filteredHomes={this.state.filteredHomes} />
-        <Search></Search>
+        <Search ></Search>
       </div>
     );
   }
