@@ -13,7 +13,10 @@ const View = (props) => (
     <div className="homeInfo"> 
       <span> Bedrooms: {props.home.bedrooms + '. '} </span>
       <span> Bathrooms: {props.home.bathrooms + '. '} </span> 
-      <span> PRICE: {props.home.price + '. '} </span>
+      <span> PRICE: {props.home.price + '. '} </span> 
+      <br>
+      <span> Desciption: {props.home.desciption + '. '} </span>
+      <br>
       <span onCLick={}> LINK: {props.home.listing_url} </span>
     </div>
   </div>

@@ -5,7 +5,6 @@ import Dashboard from './Dashboard.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import ListView from './ListView.jsx';
-import View from './View.jsx';
 
 const Main = (props) => (
   <main>
@@ -14,8 +13,7 @@ const Main = (props) => (
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
-      <Route path='/homes' component={ListView}/>
-      <Route path='/homes/view' component={View}/>
+      <Route path='/homes' render={() => <ListView homesList={props.homesList} />}/>
     </Switch>
   </main>
 )
