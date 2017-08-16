@@ -75,9 +75,9 @@ var filterByOption = function(column, option, callback) {
 };
 
 //TEST: filter by city.
-console.log(filterByOption('city', 'san francisco', (res) => {
-  console.log(res)}
-));
+// console.log(filterByOption('city', 'san francisco', (res) => {
+//   console.log(res)}
+// ));
 //end of filter by city test
 
 module.exports.find = find;

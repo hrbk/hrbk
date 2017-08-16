@@ -38,7 +38,7 @@ class Search extends React.Component {
                 onChange={this.handleChange.bind(this)}>
               </rb.FormControl>
               <rb.Button
-                type="submit"
+                type="button"
                 style={{marginTop: '20px'}}
                 onClick={this.search.bind(this)}
                 bsStyle="info">
