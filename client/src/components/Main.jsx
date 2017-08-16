@@ -14,8 +14,8 @@ const Main = (props) => (
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
-      <Route path='/listView' component={ListView}/>
-      <Route path='/view' component={View}/>
+      <Route path='/homes' component={ListView}/>
+      <Route path='/homes/view' component={View}/>
     </Switch>
   </main>
 )
