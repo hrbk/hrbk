@@ -8,16 +8,19 @@ import ReactDOM from 'react-dom';
 
 const View = (props) => (
   <div className="home">
-    <h3 className="homeName"> {props.home.name} </h3>
-    <div className="homePic"> {props.home.photopath} </div>
+    <h5 className="homeName"> Home: {props.home.title} </h5>
+    <div> <img src={ `${props.home.photopath}`} /> </div>
     <div className="homeInfo"> 
-      <span> Bedrooms: {props.home.bedrooms + '. '} </span>
-      <span> Bathrooms: {props.home.bathrooms + '. '} </span> 
-      <span> PRICE: {props.home.price + '. '} </span> 
-      <br>
-      <span> Desciption: {props.home.desciption + '. '} </span>
-      </br>
-      <span > LINK: {props.home.listing_url} </span>
+      <span className="address"> {props.home.address} </span>
+      <br/>
+      <span className="city"> {props.home.city + ', '} </span> 
+      <span className="state"> {props.home.state + '. '} </span> 
+      <span className="zip"> {' ' + props.home.zipcode} </span>
+     
+      <br/>
+      <span> Desciption: {props.home.description + '. \n'} </span>
+      <br/>
+
     </div>
   </div>
 );

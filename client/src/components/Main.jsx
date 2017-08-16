@@ -13,7 +13,7 @@ const Main = (props) => (
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
-      <Route path='/homes' render={() => <ListView homesList={props.homesList} />}/>
+      <Route path='/homes' render={() => <ListView homesList={props.filteredHomes} />}/>
     </Switch>
   </main>
 )
