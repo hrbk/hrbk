@@ -16,10 +16,10 @@ const View = (props) => (
       <span> PRICE: {props.home.price + '. '} </span> 
       <br>
       <span> Desciption: {props.home.desciption + '. '} </span>
-      <br>
-      <span onCLick={}> LINK: {props.home.listing_url} </span>
+      </br>
+      <span > LINK: {props.home.listing_url} </span>
     </div>
   </div>
-)
+);
 
 export default View;
