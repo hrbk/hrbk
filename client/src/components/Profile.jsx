@@ -2,45 +2,10 @@ import React from 'react';
 import data from '../../../testdata.json'; 
 import * as rb from 'react-bootstrap';
 
-<<<<<<< HEAD
-var title = {
-  position: 'relative',
-  background: `url(${data.profiles[1].photopath}) center center`, 
-  height: '70vh',
-  backgroundSize: 'cover',
-  overflow: 'hidden'
-}
-var profilePhoto = {
-  background: `url(${data.profiles[1].photopath}) no-repeat center`, 
-  backgroundSize: '100% auto',
-  height: '80vh'
-}
-
-=======
->>>>>>> 46174ef62a7ad57bbd92dee2333e46127a9a6f4c
 class Profile extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-<<<<<<< HEAD
-      
-    }
-  }
-  
-  render() {
-    return (
-    <div>
-
-      <rb.Jumbotron style={title}>
-        
-      </rb.Jumbotron>
-    </div>
-    )
-  }
-  
-}
-
-=======
     }
   }
   render() {
@@ -128,5 +93,4 @@ var description = {
   fontWeight: '200',
   padding: '20px 0'
 }
->>>>>>> 46174ef62a7ad57bbd92dee2333e46127a9a6f4c
 export default Profile;
