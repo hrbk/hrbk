@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 
 //have a link to all the views url.. or something along those lines.
 /*IMPORTANT:
-=======
-/*IMPORTANT: 
   -photopath is not registered with dummydata;
 */
 
@@ -18,12 +16,7 @@ const View = (props) => (
       <span className="city"> {props.home.city + ', '} </span>
       <span className="state"> {props.home.state + '. '} </span>
       <span className="zip"> {' ' + props.home.zipcode} </span>
-    <div className="homeInfo"> 
-      <span className="address"> {props.home.address} </span>
-      <br/>
-      <span className="city"> {props.home.city + ', '} </span> 
-      <span className="state"> {props.home.state + '. '} </span> 
-      <span className="zip"> {' ' + props.home.zipcode} </span>
+
       <br/>
       <span> Desciption: {props.home.description + '. \n'} </span>
       <br/>
@@ -31,6 +24,5 @@ const View = (props) => (
     </div>
   </div>
 );
-
 
 export default View;

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Search from './Search.jsx';
 import View from './View.jsx';
@@ -12,10 +13,5 @@ const Home = (props) => {
     </div>
   );
 }
-const Home = (props) => (
-  <div className="container">
-    <h1>Home</h1>
-  </div>
-);
 
 export default Home;
