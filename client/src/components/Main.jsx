@@ -9,7 +9,7 @@ import ListView from './ListView.jsx';
 const Main = (props) => (
   <main>
     <Switch>
-      <Route exact path='/' render={() => <Home onSearch={props.onSearch} homesList={props.homesList} />}/>
+      <Route exact path='/' render={() => <Home onSearch={props.onSearch} filteredHomes={props.filteredHomes} />}/>
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
