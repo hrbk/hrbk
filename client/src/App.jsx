@@ -17,15 +17,17 @@ class App extends React.Component {
   }
 
   onSearch(searchFilter) {
-    console.log(searchFilter);
-    axios.get('/search') //{city: searchFilter[0], state: searchFilter[1]}
-    .then(function(response) {
+    axios.get('/search', {
+      params: {
+        data: searchFilter
+      }
+    })
+    .then((response) => {
       this.setState({
-        filteredHomes: response //where data is held in axios response??
+        filteredHomes: response.data
       });
     })
-
-    .catch(function(error) {
+    .catch((error) => {
       console.log('Error on Axios GET');
     })
   }
