@@ -1,7 +1,4 @@
-/* 
-  JSON format of the hard-coded data! 
-  It's an object with a 'users' array and a 'profiles' array. 
- */
+
 {
   "users": [{
     "id": 1,
