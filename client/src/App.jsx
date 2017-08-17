@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Search from './components/Search.jsx';
+import Profile from './components/Profile.jsx'; 
 import axios from 'axios';
 
 class App extends React.Component {
@@ -37,6 +38,8 @@ class App extends React.Component {
       <div>
         <Header />
         <Main onSearch={this.onSearch} filteredHomes={this.state.filteredHomes} />
+        <Search ></Search>
+        <Main filteredHomes={this.state.filteredHomes} />
       </div>
     );
   }
