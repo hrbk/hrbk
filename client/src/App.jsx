@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as rb from 'react-bootstrap';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Search from './components/Search.jsx';
@@ -14,7 +13,7 @@ class App extends React.Component {
       filteredHomes: [],
     }
   }
-  
+
   onSearch(searchFilter) {
     axios.get('/search') //{city: searchFilter[0], state: searchFilter[1]}
     .then(function(response) {
