@@ -5,6 +5,7 @@ import Dashboard from './Dashboard.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import ListView from './ListView.jsx';
+import Profile from './Profile.jsx';
 
 const Main = (props) => (
   <main>
@@ -14,6 +15,7 @@ const Main = (props) => (
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
       <Route path='/homes' render={() => <ListView homesList={props.filteredHomes} />}/>
+      <Route path='/profile' component={Profile}/>
     </Switch>
   </main>
 )

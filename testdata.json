@@ -3,7 +3,7 @@
   "users": [{
     "id": 1,
     "email": "email1@gmail.com",
-    "userphoto": "1.jpg",
+    "userphoto": "http://icons.iconarchive.com/icons/indeepop/rave/256/yammi-banana-icon.png",
     "firstname": "Cameron",
     "lastname": null,
     "password": null,
