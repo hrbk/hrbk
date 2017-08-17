@@ -8,7 +8,7 @@ import data from '../../../testdata.json';
 
 const ListView = (props) => (
     <div>
-      {props.profiles.map((home, i) => <View key={i} home={home}/>)}
+      {props.data.map((home, i) => <View key={i} home={home}/>)}
     </div>
 );
 
