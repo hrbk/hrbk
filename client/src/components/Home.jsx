@@ -1,9 +1,10 @@
 import React from 'react';
+import Search from './Search.jsx';
 
 const Home = (props) => (
   <div className="container">
     <h1>Home</h1>
-    {props.homesList.map((home) => home)}
+    <Search onSearch={props.onSearch} />
   </div>
 );
 

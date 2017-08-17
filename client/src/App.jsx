@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as rb from 'react-bootstrap';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Search from './components/Search.jsx';
@@ -13,9 +12,12 @@ class App extends React.Component {
       searchTerm: '',
       filteredHomes: [],
     }
+
+    this.onSearch = this.onSearch.bind(this);
   }
-  
+
   onSearch(searchFilter) {
+    console.log(searchFilter);
     axios.get('/search') //{city: searchFilter[0], state: searchFilter[1]}
     .then(function(response) {
       this.setState({
@@ -32,8 +34,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Main filteredHomes={this.state.filteredHomes} />
-        <Search ></Search>
+        <Main onSearch={this.onSearch} filteredHomes={this.state.filteredHomes} />
       </div>
     );
   }
