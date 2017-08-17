@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Swap your home",
   "author": "banana kingdom",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.4.0"
   },
@@ -14,6 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
@@ -24,8 +25,8 @@
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
     "react-router": "^4.1.2",
-    "react-router-dom": "^4.1.2",
     "react-router-bootstrap": "^0.24.2",
+    "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
     "sequelize": "^4.4.2",
     "webpack": "^3.5.1"
@@ -40,7 +41,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.7.2",
     "enzyme": "^2.9.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "jest": "^20.0.4",
     "jshint": "^2.9.5",
     "react-addons-test-utils": "^15.6.0",
@@ -50,5 +51,15 @@
     "presets": [
       "es2015"
     ]
-  }
+  },
+  "main": "eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiyeonpark/hrbk.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kiyeonpark/hrbk/issues"
+  },
+  "homepage": "https://github.com/kiyeonpark/hrbk#readme"
 }
