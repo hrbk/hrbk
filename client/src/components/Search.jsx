@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 class SearchPlaces extends React.Component {
@@ -46,33 +45,27 @@ class SearchPlaces extends React.Component {
       .catch(error => console.error('Error', error));
   }
 
-
   render() {
     const inputProps = {
       value: this.state.searchTerm,
       onChange: this.handleChange,
       id: "homeswap-search",
       class: "search__input",
-      placeholder: "Where to go?",
-      autoFocus: true
+      placeholder: "Where to go?"
     }
     const cssClasses = {
       root: 'form-group',
       input: 'form-control'
     }
     return (
-      <Form>
-        <PlacesAutocomplete
-          inputProps={inputProps}
-          onSelect={this.handleSelect}
-          onEnterKeyDown={this.handleSelect}
-          highlightFirstSuggestion={true}
-          googleLogo={false}
-          />
-      </Form>
+      <PlacesAutocomplete
+        inputProps={inputProps}
+        onSelect={this.handleSelect}
+        onEnterKeyDown={this.handleSelect}
+        highlightFirstSuggestion={true}
+        googleLogo={false} />
     )
   }
 }
-
 
 export default SearchPlaces;
