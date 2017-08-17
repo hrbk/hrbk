@@ -1,23 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import * as rb from 'react-bootstrap';
-import Search from './components/Search.jsx';
+import { render } from 'react-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
+import App from './app.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render () {
-    return (
-      <div>
-        <Search></Search>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+render((
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById('app'));
