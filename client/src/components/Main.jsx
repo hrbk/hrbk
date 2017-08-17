@@ -4,6 +4,7 @@ import Home from './Home.jsx';
 import Dashboard from './Dashboard.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
+import Profile from './Profile.jsx';
 
 const Main = (props) => (
   <main>
@@ -12,6 +13,7 @@ const Main = (props) => (
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/login' component={Login}/>
+      <Route path='/profile' component={Profile}/>
     </Switch>
   </main>
 )
