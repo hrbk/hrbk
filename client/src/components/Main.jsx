@@ -10,12 +10,12 @@ import Profile from './Profile.jsx';
 const Main = (props) => (
   <main>
     <Switch>
-      <Route exact path='/' render={() => <Home onSearch={props.onSearch} filteredHomes={props.filteredHomes} />}/>
-      <Route path='/dashboard' component={Dashboard}/>
-      <Route path='/signup' component={Signup}/>
-      <Route path='/login' component={Login}/>
-      <Route path='/homes' render={() => <ListView filteredHomes={props.filteredHomes} />}/>
-      <Route path='/profile' component={Profile}/>
+      <Route exact path='/' render={(args) => <Home {...args} onSearch={props.onSearch} filteredHomes={props.filteredHomes} />} />
+      <Route path='/homes' render={(args) => <Home {...args} onSearch={props.onSearch} filteredHomes={props.filteredHomes} />} />
+      <Route path='/homes=:profileId' component={Profile} />
+      <Route path='/dashboard' component={Dashboard} />
+      <Route path='/signup' component={Signup} />
+      <Route path='/login' component={Login} />
     </Switch>
   </main>
 )

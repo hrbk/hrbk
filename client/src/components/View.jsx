@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 const View = (props) => (
   <div className="home">
-    <h5 className="homeName"> Home: {props.home.title} </h5>
+    <Link to={`/homes=${props.home.id}`}>
+      <h5 className="homeName"> Home: {props.home.title} </h5>
+    </Link>
     <div> <img src={ `${props.home.photopath}`} /> </div>
     <div className="homeInfo">
       <span className="address"> {props.home.address} </span>
