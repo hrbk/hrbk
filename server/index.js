@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/search', function(req, res) {
+	console.log(req.query.data)
 	const { city, state, country } = JSON.parse(req.query.data);
 
 	if ( city ) {
