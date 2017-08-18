@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//have a link to all the views url.. or something along those lines.
-/*IMPORTANT:
-  -photopath is not registered with dummydata;
-*/
-
 const View = (props) => (
   <div className="home">
     <h5 className="homeName"> Home: {props.home.title} </h5>
@@ -18,7 +13,7 @@ const View = (props) => (
       <span className="zip"> {' ' + props.home.zipcode} </span>
 
       <br/>
-      <span> Desciption: {props.home.description + '. \n'} </span>
+      <span> Description: {props.home.description + '.'} </span>
       <br/>
 
     </div>
