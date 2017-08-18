@@ -8,15 +8,17 @@
     "lastname": null,
     "password": null,
     "salt": null
-  }, {
+  }, 
+  {
     "id": 2,
-    "email": "email2@gmail.com",
+    "email": "dcervoni03@gmail.com",
     "userphoto": "2.jpg",
     "firstname": "Daniel",
     "lastname": null,
-    "password": null,
+    "password": "daniel123",
     "salt": null
-  }, {
+  }, 
+  {
     "id": 3,
     "email": "email3@gmail.com",
     "userphoto": "3.jpg",
@@ -24,7 +26,8 @@
     "lastname": null,
     "password": null,
     "salt": null
-  }, {
+  }, 
+  {
     "id": 4,
     "email": "email4@gmail.com",
     "userphoto": "4.jpg",

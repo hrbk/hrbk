@@ -1,7 +1,74 @@
 import React from 'react';
+import * as rb from 'react-bootstrap';
+import axios from 'axios';
 
-const Login = (props) => (
-  <div>Login</div>
-);
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  handleUsernameChange(e) {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  handlePasswordChange(e) {
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  onSubmit() {
+    axios.post('/login', {email: this.state.email, password: this.state.password})
+    .then((response) => {
+      console.log('Success', response);
+      window.history.pushState(null, null, 'dashboard');
+    })
+    .catch((error) => {
+      console.log('Error on submission');
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <rb.Grid>
+          <rb.Col md={4}>
+            <rb.Form>
+              <rb.FormGroup>
+                <rb.ControlLabel>Username</rb.ControlLabel>
+                <rb.FormControl 
+                  type="text" 
+                  value={this.state.email} 
+                  placeholder="Username" 
+                  onChange={this.handleUsernameChange.bind(this)}>
+                </rb.FormControl>
+                <rb.ControlLabel>Password</rb.ControlLabel>
+                <rb.FormControl
+                  type="text"
+                  value={this.state.password}
+                  placeholder="Password"
+                  onChange={this.handlePasswordChange.bind(this)}>
+                </rb.FormControl>
+                <rb.Button
+                style={{marginTop: '15px'}}
+                type="button"
+                bsStyle="info"
+                onClick={this.onSubmit.bind(this)}
+                >Submit</rb.Button>
+              </rb.FormGroup>
+            </rb.Form>
+          </rb.Col>
+        </rb.Grid>
+      </div>
+    )
+  }
+}
 
 export default Login;

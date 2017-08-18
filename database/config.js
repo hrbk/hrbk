@@ -13,7 +13,7 @@ module.exports = (db) => {
       userphoto VARCHAR(50),
       firstname VARCHAR(50),
       lastname VARCHAR(50),
-      password VARCHAR(50),
+      password VARCHAR(80),
       salt VARCHAR(50)
     );`)
   .then(() => {
@@ -26,8 +26,8 @@ module.exports = (db) => {
         city VARCHAR(25),
         state VARCHAR(10),
         zipcode INT,
-        title VARCHAR(25),
-        description VARCHAR(100),
+        title VARCHAR(100),
+        description VARCHAR(300),
         photopath VARCHAR(50),
         FOREIGN KEY (userid) REFERENCES users(id)
       );`);
