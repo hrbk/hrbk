@@ -12,16 +12,10 @@ class Login extends React.Component {
     }
   }
 
-  handleUsernameChange(e) {
+  handleInputChange(e) {
     this.setState({
-      email: e.target.value
+      [e.target.name]: e.target.value
     });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value
-    })
   }
 
   onSubmit() {
@@ -44,17 +38,19 @@ class Login extends React.Component {
               <rb.FormGroup>
                 <rb.ControlLabel>Username</rb.ControlLabel>
                 <rb.FormControl 
-                  type="text" 
+                  type="text"
+                  name="email" 
                   value={this.state.email} 
                   placeholder="Username" 
-                  onChange={this.handleUsernameChange.bind(this)}>
+                  onChange={this.handleInputChange.bind(this)}>
                 </rb.FormControl>
                 <rb.ControlLabel>Password</rb.ControlLabel>
                 <rb.FormControl
                   type="text"
+                  name="password"
                   value={this.state.password}
                   placeholder="Password"
-                  onChange={this.handlePasswordChange.bind(this)}>
+                  onChange={this.handleInputChange.bind(this)}>
                 </rb.FormControl>
                 <rb.Button
                 style={{marginTop: '15px'}}

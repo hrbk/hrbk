@@ -16,7 +16,6 @@ var find = function(query, table, callback) {
 
 var findUserByEmailAndPassword = function(email, password, callback) {
   var sql = `SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
-  console.log('query:', sql);
   db.query(sql, function(err, res) {
     callback(res[0]);
   })
