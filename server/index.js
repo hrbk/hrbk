@@ -38,6 +38,12 @@ app.get('/search', function(req, res) {
 	}
 });
 
+app.get('/search/:profileId', (req, res) => {
+	dbHelpers.filterByOption('id', req.params.profileId, (data) => {
+		res.json(data);
+	})
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client', 'dist', 'index.html'));
 });
