@@ -19,7 +19,7 @@ class App extends React.Component {
     axios.get('/cities')
       .then((response) => {
         var sortedCities = {};
-        response.data.forEach(profile => {      
+        response.data.forEach(profile => {
           if (!sortedCities[profile.city]) {
             sortedCities[profile.city] = [profile];
           } else {
@@ -33,10 +33,15 @@ class App extends React.Component {
         console.log('app mount error', error);
       });
   }
-  
+
   /**
    * onSearch uses an axios.get to send user input and uses setState to propagate the filteredHomes array with the resulting data. Errors are caught and logged. The user input is formatted through Google Autocomplete Places in the Search component.
    * @param  {String} searchFilter   The search input. Depending on the user input, this may include city, state and country.
+=======
+  /**
+   * onSearch uses an axios.get to send user input and uses setState to propagate the filteredHomes array with the resulting data. Errors are caught and logged. The user input is formatted through Google Autocomplete Places in the Search component.
+   * @param  {String} searchFilter   The search input. Depending on the user input, this may include city, state and country.
+>>>>>>> add documentation for App.jsx
    */
   onSearch(searchFilter) {
     axios.get('/search', {
@@ -54,7 +59,7 @@ class App extends React.Component {
     })
   }
 
-  close() { 
+  close() {
     this.setState( { open: !this.state.open } )
   }
 
