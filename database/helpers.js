@@ -19,6 +19,7 @@ var findUserByEmailAndPassword = function(email, password, callback) {
   db.query(sql, function(err, res) {
     callback(res[0]);
   });
+  })
 }
 
 var findUserByEmail = function(email, callback) {
@@ -27,6 +28,7 @@ var findUserByEmail = function(email, callback) {
   db.query(sql, function(err, res) {
     callback(res[0]);
   });
+  })
 }
 
 var findUserAndProfileByEmail = function(email, callback) {
@@ -34,6 +36,7 @@ var findUserAndProfileByEmail = function(email, callback) {
   db.query(sql, function(err, res) {
     callback(res[0]);
   });
+  })
 }
 
 var findByID = function(id, callback) {
