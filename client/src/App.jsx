@@ -12,10 +12,12 @@ class App extends React.Component {
       searchTerm: '',
       filteredHomes: [],
     }
-
     this.onSearch = this.onSearch.bind(this);
   }
-
+  /**
+   * onSearch uses an axios.get to send user input and uses setState to propagate the filteredHomes array with the resulting data. Errors are caught and logged. The user input is formatted through Google Autocomplete Places in the Search component.
+   * @param  {String} searchFilter   The search input. Depending on the user input, this may include city, state and country. 
+   */
   onSearch(searchFilter) {
     axios.get('/search', {
       params: {
