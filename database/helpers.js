@@ -14,6 +14,44 @@ var find = function(query, table, callback) {
   });
 };
 
+var findUserByEmailAndPassword = function(email, password, callback) {
+  var sql = `SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findUserByEmail = function(email, callback) {
+  var sql = `SELECT * FROM users WHERE email = ${email}`;
+  console.log('query:', sql);
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findUserAndProfileByEmail = function(email, callback) {
+  var sql = `SELECT * FROM users INNER JOIN profiles ON users.id = profiles.userid WHERE users.email = ${email}`;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findByID = function(id, callback) {
+  var sql = `SELECT * FROM users where id=` + id;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  });
+}
+
+var addUser = function(email, userphoto, firstname, lastname, password, salt, callback) {
+/**
+ * @param {string} 
+ * to select all, pass '*' as query
+ * 
+*/
+
+  var options = [email, userphoto, firstname, lastname, password, salt]; 
+  
 /**
  * addUser function that passes given information into the users database table.
  * @param  {String} email    An email address associated with the user.
@@ -30,6 +68,16 @@ var addUser = function(email, userphoto, firstname, lastname, password, salt, ca
     INSERT INTO users (email, userphoto, firstname, lastname, password, salt)
     VALUES (?, ?, ?, ?, ?, ?);`;
   db.query(sql, options, function(err, res) {
+    callback();
+  });
+};
+
+//TODO: create USER FOREIGN KEY functionality
+var addListing = function(id, userObj, callback) {
+  //if user is going to be sent as stringified object;
+  var user = userObj;
+
+  var options = [id, user.address, user.city, user.state, 
     err ? callback(err) : callback(res);
   });
 };
@@ -45,9 +93,12 @@ var addListing = function(userObj) {
     user.zipcode, user.title, user.description, user.photopath
   ];
   var sql = `
-    INSERT INTO profiles (id, address, city, state, zipcode, title, description, photopath)
+    INSERT INTO profiles (userid, address, city, state, zipcode, title, description, photopath)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
-  db.query(sql, options);
+  db.query(sql, options, function(err, res) {
+    console.log(options, res);
+    callback();
+  });
 };
 
 /**
@@ -78,3 +129,7 @@ module.exports.addUser = addUser;
 module.exports.filterByCity = filterByCity;
 module.exports.filterByOption = filterByOption;
 module.exports.addListing = addListing;
+module.exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
+module.exports.findByID = findByID;
+module.exports.findUserByEmail = findUserByEmail;
+module.exports.findUserAndProfileByEmail = findUserAndProfileByEmail;
