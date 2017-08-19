@@ -78,7 +78,10 @@ const User = (props) => {
 const Name = () => {
   return (
     <div>
-      hello
+
+      <button disabled> 
+      User
+      </button> 
     </div>
   )
 }
@@ -95,6 +98,9 @@ var description = {
 }
 var head = {
 
+}
+var name={
+  'background': 'yellow'
 }
 var thumb = {
   border: 'none'
