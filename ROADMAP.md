@@ -1,4 +1,62 @@
 # Client
+<dl>
+<dt><a href="#App.jsx">App.jsx</a></dt>
+<dt><a href="#index.jsx">index.jsx</a></dt>
+<dt><a href="#Dashboard.jsx">Dashboard.jsx</a></dt>
+<dt><a href="#Header.jsx">Header.jsx</a></dt>
+<dt><a href="#ListView.jsx">ListView.jsx</a></dt>
+<dt><a href="#Login.jsx">Login.jsx</a></dt>
+<dt><a href="#Main.jsx">Main.jsx</a></dt>
+<dt><a href="#Profile.jsx">Profile.jsx</a></dt>
+<dt><a href="#Search.jsx">Search.jsx</a></dt>
+<dt><a href="#Signup.jsx">Signup.jsx</a></dt>
+<dt><a href="#View.jsx">View.jsx</a></dt>
+<dt><a href="#ViewPage.jsx">ViewPage.jsx</a></dt>
+</dl>
+
+<a name="App.jsx"></a>
+## App.jsx
+#### onSearch(searchFilter)
+onSearch uses an axios.get to send user input and uses setState to propagate the filteredHomes array with the resulting data. Errors are caught and logged. The user input is formatted through Google Autocomplete Places in the Search component.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| SearchFilter | <code>String</code> | The search input. Depending on the user input, this may include city, state and country.|
+
+<a name="index.jsx"></a>
+## index.jsx
+
+<a name="Dashboard.jsx"></a>
+## Dashboard.jsx
+
+<a name="Header.jsx"></a>
+## Header.jsx
+The header component includes a home, dashboard, sign up and login buttons. The dashboard, sign up and login buttons will collapse on browser window resize into a menu bar.
+
+<a name="ListView.jsx"></a>
+## ListView.jsx
+The ListView component maps through all filtered homes from a user's search into a list of div contained pieces of information.
+
+<a name="Login.jsx"></a>
+## Login.jsx
+
+<a name="Main.jsx"></a>
+## Main.jsx
+
+<a name="Profile.jsx"></a>
+## Profile.jsx
+
+<a name="Search.jsx"></a>
+## Search.jsx
+
+<a name="Signup.jsx"></a>
+## Signup.jsx
+
+<a name="View.jsx"></a>
+## View.jsx
+
+<a name="ViewPage.jsx"></a>
+## ViewPage.jsx
 
 # Server
 ## index.js
