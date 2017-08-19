@@ -4,6 +4,9 @@ import { Nav, Navbar, NavItem, Wrapper } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const Header = () => (
+  /**
+   * The header component includes a home, dashboard, sign up and login buttons. The dashboard, sign up and login buttons will collapse on browser window resize into a menu bar.
+   */
   <Navbar staticTop componentClass="header" className="homeswap-nav">
     <Navbar.Header>
       <Navbar.Brand>
