@@ -11,12 +11,6 @@ module.exports = (db) => {
   return db.queryAsync(`
     CREATE TABLE IF NOT EXISTS users (
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      email VARCHAR(50),
-      userphoto VARCHAR(50),
-      firstname VARCHAR(50),
-      lastname VARCHAR(50),
-      password VARCHAR(80),
-      salt VARCHAR(50)
       email VARCHAR(100),
       userphoto VARCHAR(100),
       firstname VARCHAR(100),
@@ -33,9 +27,6 @@ module.exports = (db) => {
         city VARCHAR(50),
         state VARCHAR(20),
         zipcode INT,
-        title VARCHAR(100),
-        description VARCHAR(300),
-        photopath VARCHAR(50),
         title VARCHAR(250),
         description VARCHAR(1000),
         photopath VARCHAR(200),
