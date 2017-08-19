@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media } from 'react-bootstrap';
+import { Media, Label } from 'react-bootstrap';
 import View from './View.jsx'
 
 const DefaultList = (props) => {
@@ -9,23 +9,20 @@ const DefaultList = (props) => {
       <br/>
       <Media.Left align="middle">
         <Media.Heading>
-          <span class="head">Try: </span>
-          <br/>
-
-          {Object.keys(props.sortedCities).map((city, i) => 
-          	<div>
-          	  <div>
-              <City key={i} city={city} property={props.sortedCities[city]}/>
-              </div>
-              <div>
-              <View key={i} home={props.sortedCities[city][0]} />
-              </div>
-            </div> 
-          )}
+          <h2> <Label class="head">Try </Label> </h2>
           	
         </Media.Heading>
       </Media.Left>
-
+        {Object.keys(props.sortedCities).map((city, i) => 
+          	<div>
+          	  <div>
+                <City key={i} city={city} property={props.sortedCities[city]}/>
+              </div>
+              <div>
+                <View key={i} home={props.sortedCities[city][0]} />
+              </div>
+            </div> 
+          )}
 
     </div>
   );
@@ -34,11 +31,12 @@ const DefaultList = (props) => {
 const City = (props) => {
 
   return (
-    <div className="container">
+    <Media.Heading>
+      <Label>
       {props.city + '!'}
-      {console.log(props.property)}
+      </Label>
       <br/>
-    </div>
+    </Media.Heading>
   );
 }
 

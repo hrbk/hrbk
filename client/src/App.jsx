@@ -16,23 +16,19 @@ class App extends React.Component {
     this.onSearch = this.onSearch.bind(this);
   }
 
-  //[...new Set(array)]
   componentDidMount() {
     axios.get('/cities')
       .then((response) => {
-        //object with city string property
         var sortedCities = {};
-        response.data.forEach(profile => {
-          
+        response.data.forEach(profile => {      
           if (!sortedCities[profile.city]) {
             sortedCities[profile.city] = [profile];
           } else {
-            sortedCities[profile.city].push(profile)
+            sortedCities[profile.city].push(profile);
           }
 
-          this.setState({sortedCities: sortedCities})
-        })
-        console.log('sorted cities', sortedCities)
+          this.setState({sortedCities: sortedCities});
+        });
       })
       .catch((error) => {
         console.log('app mount error', error);

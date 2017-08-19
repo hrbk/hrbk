@@ -41,7 +41,6 @@ app.get('/search', function(req, res) {
 
 app.get('/cities', (req, res) => {
   dbHelpers.find('*', 'profiles', (data) => {
-  	console.log(data);
   	res.json(data);
   })
 });
