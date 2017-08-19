@@ -58,13 +58,15 @@ class Search extends React.Component {
       input: 'form-control'
     }
     return (
-      <PlacesAutocomplete
-        inputProps={inputProps}
-        onSelect={this.handleSelect}
-        onEnterKeyDown={this.handleSelect}
-        highlightFirstSuggestion={true}
-        googleLogo={false} />
-    )
+      <div className='container'>
+        <PlacesAutocomplete
+          inputProps={inputProps}
+          onSelect={this.handleSelect}
+          onEnterKeyDown={this.handleSelect}
+          highlightFirstSuggestion={true}
+          googleLogo={false} />
+      </div>
+    );
   }
 }
 

@@ -16,6 +16,12 @@ const Main = (props) => (
       <Route path='/login' render={() => <Login userInfo={props.userInfo} handleInputChange={props.handleInputChange} onLoginSubmit={props.onLoginSubmit}/>}/>
       <Route path='/homes' render={() => <ListView homesList={props.filteredHomes} />}/>
       <Route path='/profile' component={Profile}/>
+      <Route exact path='/' render={(args) => <Home {...args} onSearch={props.onSearch} sortedCities={props.sortedCities} filteredHomes={props.filteredHomes} />} />
+      <Route path='/homes' render={(args) => <Home {...args} close={props.close} onSearch={props.onSearch} sortedCities={props.sortedCities} filteredHomes={props.filteredHomes} />} />
+      <Route path='/homes=:profileId' component={Profile} />
+      <Route path='/dashboard' component={Dashboard} />
+      <Route path='/signup' component={Signup} />
+      <Route path='/login' component={Login} />
     </Switch>
   </main>
 )

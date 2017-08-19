@@ -45,7 +45,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+See [ROADMAP.md](ROADMAP.md) for a break down of our file structure and helpful documentation of the app.
 
 
 ## Contributing
