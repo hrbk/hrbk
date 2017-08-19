@@ -3,10 +3,10 @@
 # Server
 
 # Database
-##config.js
+## config.js
 
-##helpers.js
-## Functions
+## helpers.js
+### Functions
 
 <dl>
 <dt><a href="#find">find(query, table, callback)</a></dt>
@@ -28,10 +28,9 @@
 
 <a name="find"></a>
 
-## find(query, table, callback)
+#### find(query, table, callback)
 A simple find function for the MySql database.
 
-**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -41,10 +40,9 @@ A simple find function for the MySql database.
 
 <a name="addUser"></a>
 
-## addUser(email, userphoto, firstname, lastname, password, callback)
+#### addUser(email, userphoto, firstname, lastname, password, callback)
 addUser function that passes given information into the users database table.
 
-**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -57,10 +55,8 @@ addUser function that passes given information into the users database table.
 
 <a name="addListing"></a>
 
-## addListing(userObj)
+#### addListing(userObj)
 If the information regarding a user's home or listing is being passed through as a single object rather than through separate parameters, use addListing
-
-**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -68,10 +64,8 @@ If the information regarding a user's home or listing is being passed through as
 
 <a name="filterByCity"></a>
 
-## filterByCity(city, callback)
+#### filterByCity(city, callback)
 filterByCity function that can provide listing information from the profiles table of the database based on a specific United States city. Plans to include international cities will be implemented in the near future.
-
-**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -80,10 +74,8 @@ filterByCity function that can provide listing information from the profiles tab
 
 <a name="filterByOption"></a>
 
-## filterByOption(column, option, callback)
+#### filterByOption(column, option, callback)
 filterByOption allows you to specify the column and additional options to query. For example, passing 'city' and 'San Francisco' will yield listings from San Francisco.
-
-**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -93,10 +85,25 @@ filterByOption allows you to specify the column and additional options to query.
 
 
 
-##index.js
+## index.js
 
-### connection
+### Constants
+
+<dl>
+<dt><a href="#connection">connection</a></dt>
+<dd><p>mysql connection; change the host, user, database, and add a password  for the database as necessary to establish a connection.</p>
+</dd>
+<dt><a href="#db">db</a></dt>
+<dd><p>Promisifies the entire object by going through the object&#39;s properties and creating an async equivalent of each function on the object and its prototype chain.</p>
+</dd>
+</dl>
+
+<a name="connection"></a>
+
+#### connection
 mysql connection; change the host, user, database, and add a password  for the database as necessary to establish a connection.
 
-### db
+<a name="db"></a>
+
+#### db
 Promisifies the entire object by going through the object's properties and creating an async equivalent of each function on the object and its prototype chain.
