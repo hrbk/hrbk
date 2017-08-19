@@ -6,7 +6,7 @@
 ##config.js
 
 ##helpers.js
-### Functions
+## Functions
 
 <dl>
 <dt><a href="#find">find(query, table, callback)</a></dt>
@@ -26,8 +26,12 @@
 </dd>
 </dl>
 
-### find(query, table, callback)
-A simple find function for the MySql database.  
+<a name="find"></a>
+
+## find(query, table, callback)
+A simple find function for the MySql database.
+
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -35,8 +39,12 @@ A simple find function for the MySql database.
 | table | <code>String</code> | One of two tables that can be queried. Either 'users' or 'profiles'. |
 | callback | <code>function</code> | A callback applied to the results of the query on the database. Can be implemented when the 'find' function is called to manipulate the resulting data. |
 
-### addUser(email, userphoto, firstname, lastname, password, callback)
+<a name="addUser"></a>
+
+## addUser(email, userphoto, firstname, lastname, password, callback)
 addUser function that passes given information into the users database table.
+
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -47,29 +55,43 @@ addUser function that passes given information into the users database table.
 | password | <code>String</code> | The password provided by the user. An early mvp-adopted model before hashing and salt are implemented. |
 | callback | <code>function</code> | Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful. |
 
-### addListing(userObj)
+<a name="addListing"></a>
+
+## addListing(userObj)
 If the information regarding a user's home or listing is being passed through as a single object rather than through separate parameters, use addListing
+
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | userObj | <code>Object</code> | An object containing the pertinent user information for the users table in the database. The keys of the object should be: 'id', 'address', 'city', 'zipcode', 'title', 'description', 'photopath'. Note that a separate query should eventually be created with the user's email address to find the user's id to link the information between user and profile together in the database. |
 
-### filterByCity(city, callback)
+<a name="filterByCity"></a>
+
+## filterByCity(city, callback)
 filterByCity function that can provide listing information from the profiles table of the database based on a specific United States city. Plans to include international cities will be implemented in the near future.
+
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | city | <code>String</code> | A city within the United States. This should have been properly formatted by Google Autocomplete Places to reduce possible issues of typos or syntactical errors. No further formatting of this parameter should be necessary. Searching by a zipcode to include radius-wide search may be implemented in the near future.] |
 | callback | <code>function</code> | Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful. |
 
-### filterByOption(column, option, callback)
+<a name="filterByOption"></a>
+
+## filterByOption(column, option, callback)
 filterByOption allows you to specify the column and additional options to query. For example, passing 'city' and 'San Francisco' will yield listings from San Francisco.
+
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | column | <code>String</code> | Any of the columns from profile table of the database: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Recommended columns for use are 'city', 'zipcode', and 'state'. |
 | option | <code>String/Number</code> | Any specificity towards the column parameter. The parameter can either be a string or number, depending on which column is being used. |
 | callback | <code>function</code> | Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful. |
+
+
 
 ##index.js
 
