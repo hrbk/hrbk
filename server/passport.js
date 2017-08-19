@@ -29,7 +29,7 @@ module.exports = function(passport, LocalStrategy) {
 
       dbHelpers.findUserByEmail(JSON.stringify(email), function(user) {
     
-        if (user[0]) {
+        if (user) {
           return done(null, false, {message: "This email has been taken"});
 
         } else {
@@ -42,12 +42,12 @@ module.exports = function(passport, LocalStrategy) {
 
                 dbHelpers.findUserByEmail(JSON.stringify(email), function(userFromDb) {
 
-                  dbHelpers.addListing(userFromDb[0].id, req.body, function() {
+                  dbHelpers.addListing(userFromDb.id, req.body, function() {
 
-                    var newUser = new Object();
-                    newUser.id = userFromDb[0].id;
-                    newUser.email = email;
-                    newUser.password = hash;
+                    var newUser = req.body;
+                    newUser.id = userFromDb.id;
+                    delete newUser.password;
+                    delete newUser.salt;
 
                     return done(null, newUser);
                   })
@@ -69,18 +69,24 @@ module.exports = function(passport, LocalStrategy) {
 
     function(req, email, password, done) { //email and password in plain text format
       
-      dbHelpers.findUserByEmail(JSON.stringify(email), function(user) {
+      dbHelpers.findUserAndProfileByEmail(JSON.stringify(email), function(user) {
         if (!user) {
           return done(null, false, {message: 'Email does not exist'});
 
         } else {
 
-          bCrypt.compare(password, user[0].password, function(err, res) {
+          bCrypt.compare(password, user.password, function(err, res) {
             if (!res) { //res === false
               return done(null, false, {message: 'Incorrect password'});
 
             } else {
-              return done(null, user[0]);
+              //return all user info minus the password and salt
+              //better way to do this: let {password, salt, ...userInfo} = user; but babel plugin not working
+              var currentUser = user;
+              delete currentUser.password;
+              delete currentUser.salt;
+
+              return done(null, currentUser);
             }
           })
         } 

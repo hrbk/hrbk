@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-class SearchPlaces extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props)
 
@@ -68,4 +68,4 @@ class SearchPlaces extends React.Component {
   }
 }
 
-export default SearchPlaces;
+export default Search;

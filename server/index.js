@@ -20,17 +20,12 @@ app.use(passport.session());
 
 require('./passport.js')(passport, LocalStrategy);
 
-app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/signup'
-}), function(req, res) {
-  res.sendStatus(201);
+app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
+  res.send(req.user);
   }
 );
 
-app.post('/login', passport.authenticate('local-login', {
-  failureRedirect: '/dashboard'
-  }), function(req, res) {
+app.post('/login', passport.authenticate('local-login'), function(req, res) {
     res.send(req.user);
     console.log('HELLO');
   }

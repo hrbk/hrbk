@@ -11,48 +11,15 @@ class Signup extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      userphoto: '',
-      firstname: '',
-      lastname: '',
-      password: '',
-      address: '',
-      city: '',
-      state: '',
-      zipcode: '',
-      title: '',
-      description: '',
-      photopath: ''
-
     }
   }
 
-  handleInputChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+  handleChange(propertyName, e) {
+    this.props.handleInputChange(propertyName, e);
   }
 
   onSubmit() {
-    // var allItemsFilled = true;
-    // for (var key in this.state) {
-    //   console.log(this.state[JSON.stringify(key)]);
-    //   if (this.state.key.length === 0) {
-    //     allItemsFilled = false;
-    //   }
-    // }
-
-    // if (allItemsFilled) {
-      axios.post('/signup', {email: this.state.email, userphoto: this.state.userphoto, firstname: this.state.firstname, lastname: this.state.lastname, password: this.state.password, address: this.state.address, city: this.state.city, state: this.state.state, zipcode: parseInt(this.state.zipcode), title: this.state.title, description: this.state.description, photopath: this.state.photopath})
-
-      .then((response) => {
-        console.log('Success');
-      })
-
-      .catch((error) => {
-        console.log('ERROR POSTING SIGNUP')
-      })
-    // }
+    this.props.onSignUpSubmit();
   }
 
   render() {
@@ -69,10 +36,10 @@ class Signup extends React.Component {
                   style={spacing}
                   type="text" 
                   name="email" 
-                  value={this.state.email} 
+                  value={this.props.userInfo.email} 
                   placeholder="Email"
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'email')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Profile Picture</rb.ControlLabel>
@@ -83,7 +50,7 @@ class Signup extends React.Component {
                   value={this.state.userphoto} 
                   placeholder="Profile Picture" 
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'userphoto')}>
                 </rb.FormControl>
                 
                 <rb.ControlLabel>First Name</rb.ControlLabel>
@@ -94,7 +61,7 @@ class Signup extends React.Component {
                   value={this.state.firstname} 
                   placeholder="First Name" 
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'firstname')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Last Name</rb.ControlLabel>
@@ -105,7 +72,7 @@ class Signup extends React.Component {
                   value={this.state.lastname} 
                   placeholder="Last Name" 
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'lastname')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Password</rb.ControlLabel>
@@ -116,7 +83,7 @@ class Signup extends React.Component {
                   value={this.state.password}
                   placeholder="Password"
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'password')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Address</rb.ControlLabel>
@@ -127,7 +94,7 @@ class Signup extends React.Component {
                   value={this.state.address} 
                   placeholder="Address" 
                   maxLength={100}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'address')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>City</rb.ControlLabel>
@@ -138,7 +105,7 @@ class Signup extends React.Component {
                   value={this.state.city} 
                   placeholder="City"
                   maxLength={25}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'city')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>State</rb.ControlLabel>
@@ -149,7 +116,7 @@ class Signup extends React.Component {
                   value={this.state.state} 
                   placeholder="State" 
                   maxLength={10}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'state')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Zip Code</rb.ControlLabel>
@@ -159,7 +126,7 @@ class Signup extends React.Component {
                   name="zipcode"
                   value={this.state.zipcode} 
                   placeholder="Zip Code" 
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'zipcode')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Home Title</rb.ControlLabel>
@@ -170,7 +137,7 @@ class Signup extends React.Component {
                   value={this.state.title} 
                   placeholder="Home Title"
                   maxLength={25} 
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'title')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Home Description</rb.ControlLabel>
@@ -181,7 +148,7 @@ class Signup extends React.Component {
                   value={this.state.description} 
                   placeholder="Home Description" 
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'description')}>
                 </rb.FormControl>
 
                 <rb.ControlLabel>Home Photo</rb.ControlLabel>
@@ -192,7 +159,7 @@ class Signup extends React.Component {
                   value={this.state.photopath} 
                   placeholder="Add a Home Photo" 
                   maxLength={50}
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.handleChange.bind(this, 'photopath')}>
                 </rb.FormControl>
 
                 <rb.Button

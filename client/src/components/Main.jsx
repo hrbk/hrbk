@@ -12,8 +12,8 @@ const Main = (props) => (
     <Switch>
       <Route exact path='/' render={() => <Home onSearch={props.onSearch} filteredHomes={props.filteredHomes} />}/>
       <Route path='/dashboard' component={Dashboard}/>
-      <Route path='/signup' component={Signup}/>
-      <Route path='/login' component={Login}/>
+      <Route path='/signup' render={() => <Signup userInfo={props.userInfo} handleInputChange={props.handleInputChange} onSignUpSubmit={props.onSignUpSubmit}/>}/>
+      <Route path='/login' render={() => <Login userInfo={props.userInfo} handleInputChange={props.handleInputChange} onLoginSubmit={props.onLoginSubmit}/>}/>
       <Route path='/homes' render={() => <ListView homesList={props.filteredHomes} />}/>
       <Route path='/profile' component={Profile}/>
     </Switch>

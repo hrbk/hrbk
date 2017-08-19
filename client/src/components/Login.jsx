@@ -7,26 +7,15 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
     }
   }
 
-  handleInputChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  handleChange(propertyName, e) {
+    this.props.handleInputChange(propertyName, e);
   }
 
   onSubmit() {
-    axios.post('/login', {email: this.state.email, password: this.state.password})
-    .then((response) => {
-      console.log('Success', response);
-      window.history.pushState(null, null, 'dashboard');
-    })
-    .catch((error) => {
-      console.log('Error on submission');
-    })
+    this.props.onLoginSubmit();
   }
 
   render() {
@@ -42,15 +31,15 @@ class Login extends React.Component {
                   name="email" 
                   value={this.state.email} 
                   placeholder="Username" 
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.props.handleInputChange.bind(this, 'email')}>
                 </rb.FormControl>
                 <rb.ControlLabel>Password</rb.ControlLabel>
                 <rb.FormControl
-                  type="text"
+                  type="password"
                   name="password"
                   value={this.state.password}
                   placeholder="Password"
-                  onChange={this.handleInputChange.bind(this)}>
+                  onChange={this.props.handleInputChange.bind(this, 'password')}>
                 </rb.FormControl>
                 <rb.Button
                 style={{marginTop: '15px'}}

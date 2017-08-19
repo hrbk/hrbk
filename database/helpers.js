@@ -25,7 +25,14 @@ var findUserByEmail = function(email, callback) {
   var sql = `SELECT * FROM users WHERE email = ${email}`;
   console.log('query:', sql);
   db.query(sql, function(err, res) {
-    callback(res);
+    callback(res[0]);
+  })
+}
+
+var findUserAndProfileByEmail = function(email, callback) {
+  var sql = `SELECT * FROM users INNER JOIN profiles ON users.id = profiles.userid WHERE users.email = ${email}`;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
   })
 }
 
@@ -114,4 +121,5 @@ module.exports.addListing = addListing;
 module.exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 module.exports.findByID = findByID;
 module.exports.findUserByEmail = findUserByEmail;
+module.exports.findUserAndProfileByEmail = findUserAndProfileByEmail;
 
