@@ -72,12 +72,20 @@ Port is set either to the process.env.PORT given by Heroku or defaults to 3000
 <dt><a href="#index.js">index.js</a></dt>
 </dl>
 
+<<<<<<< HEAD
 <a name="config.js"></a>
+=======
+<a name="#config.js"></a>
+>>>>>>> test doc 6
 ## config.js
 
 Exports a function that returns a query to create a users table if it does not exit, then creates a profiles table if it does not exist. Errors fall through the promise chain to console log an error message.
 
+<<<<<<< HEAD
 <a name="helpers.js"></a>
+=======
+<a name="#helpers.js"></a>
+>>>>>>> test doc 6
 ## helpers.js
 
 ### Functions
@@ -157,7 +165,11 @@ filterByOption allows you to specify the column and additional options to query.
 | option | <code>String/Number</code> | Any specificity towards the column parameter. The parameter can either be a string or number, depending on which column is being used. |
 | callback | <code>function</code> | Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful. |
 
+<<<<<<< HEAD
 <a name="index.js"></a>
+=======
+<a name="#index.js"></a>
+>>>>>>> test doc 6
 ## index.js
 
 ### Constants
