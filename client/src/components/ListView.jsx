@@ -8,10 +8,10 @@ import data from '../../../testdata.json';
 
 const ListView = (props) => (
   /**
-   * The ListView component maps through all filtered homes from a user's search into a list of div contained pieces of information. 
+   * The ListView component maps through all filtered homes from a user's search into a list of div contained pieces of information.
    */
 const ListView = (props) => {
-  
+
   return (
     <div>
       {props.profiles.map((home, i) => <View key={i} close={props.close} home={home}/>)}
