@@ -10,9 +10,33 @@ class App extends React.Component {
     this.state = {
       searchTerm: '',
       filteredHomes: [],
+      sortedCities: {}
     }
 
     this.onSearch = this.onSearch.bind(this);
+  }
+
+  //[...new Set(array)]
+  componentDidMount() {
+    axios.get('/cities')
+      .then((response) => {
+        //object with city string property
+        var sortedCities = {};
+        response.data.forEach(profile => {
+          
+          if (!sortedCities[profile.city]) {
+            sortedCities[profile.city] = [profile];
+          } else {
+            sortedCities[profile.city].push(profile)
+          }
+
+          this.setState({sortedCities: sortedCities})
+        })
+        console.log('sorted cities', sortedCities)
+      })
+      .catch((error) => {
+        console.log('app mount error', error);
+      });
   }
 
   onSearch(searchFilter) {
@@ -35,7 +59,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Main onSearch={this.onSearch} filteredHomes={this.state.filteredHomes} />
+        <Main onSearch={this.onSearch} sortedCities={this.state.sortedCities} filteredHomes={this.state.filteredHomes} />
       </div>
     );
   }

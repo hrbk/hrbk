@@ -38,6 +38,14 @@ app.get('/search', function(req, res) {
 	}
 });
 
+
+app.get('/cities', (req, res) => {
+  dbHelpers.find('*', 'profiles', (data) => {
+  	console.log(data);
+  	res.json(data);
+  })
+});
+
 app.get('/search/:profileId', (req, res) => {
 	dbHelpers.filterByOption('id', req.params.profileId, (data) => {
 		res.json(data);
