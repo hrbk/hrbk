@@ -4,6 +4,12 @@ USE homeswap;
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(50),
+  userphoto VARCHAR(50),
+  firstname VARCHAR(50),
+  lastname VARCHAR(50),
+  password VARCHAR(80),
+  salt VARCHAR(50)
   email VARCHAR(100),
   userphoto VARCHAR(100),
   firstname VARCHAR(100),
