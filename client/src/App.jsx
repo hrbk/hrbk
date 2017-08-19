@@ -27,8 +27,8 @@ class App extends React.Component {
             sortedCities[profile.city].push(profile);
           }
 
-          this.setState({sortedCities: sortedCities});
         });
+        this.setState({sortedCities: sortedCities});
       })
       .catch((error) => {
         console.log('app mount error', error);
