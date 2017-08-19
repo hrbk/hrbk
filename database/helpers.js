@@ -1,8 +1,8 @@
-const db = require('./index'); 
+const db = require('./index');
 
 /**
  * A simple find function for the MySql database.
- * @param  {[String]} query    Depending on the table, a string representing the column to retrieve. The available options for the users table: 'id', 'email', 'userphoto', 'firstname', 'lastname', password, 'salt'. For the profiles table: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Pass in '*' for all columns.
+ * @param  {String} query    Depending on the table, a string representing the column to retrieve. The available options for the users table: 'id', 'email', 'userphoto', 'firstname', 'lastname', password, 'salt'. For the profiles table: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Pass in '*' for all columns.
  * @param  {String} table    One of two tables that can be queried. Either 'users' or 'profiles'.
  * @param  {Function} callback    A callback applied to the results of the query on the database. Can be implemented when the 'find' function is called to manipulate the resulting data.
  */
@@ -10,7 +10,7 @@ var find = function(query, table, callback) {
   table = table || 'profiles';
   var sql = `SELECT ${query} FROM ${table};`;
   db.query(sql, function(err, res) {
-    callback(res); 
+    callback(res);
   });
 };
 
@@ -24,13 +24,13 @@ var find = function(query, table, callback) {
  * @param  {Function} callback   Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful.
  */
 var addUser = function(email, userphoto, firstname, lastname, password, salt, callback) {
-  var options = [email, userphoto, firstname, lastname, password, salt]; 
-  
+  var options = [email, userphoto, firstname, lastname, password, salt];
+
   var sql = `
     INSERT INTO users (email, userphoto, firstname, lastname, password, salt)
     VALUES (?, ?, ?, ?, ?, ?);`;
   db.query(sql, options, function(err, res) {
-    err ? callback(err) : callback(res); 
+    err ? callback(err) : callback(res);
   });
 };
 
@@ -41,9 +41,9 @@ var addUser = function(email, userphoto, firstname, lastname, password, salt, ca
 var addListing = function(userObj) {
   user = JSON.parse(userObj);
   var options = [
-    user.id, user.address, user.city, user.state, 
+    user.id, user.address, user.city, user.state,
     user.zipcode, user.title, user.description, user.photopath
-  ]; 
+  ];
   var sql = `
     INSERT INTO profiles (id, address, city, state, zipcode, title, description, photopath)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
@@ -63,7 +63,7 @@ var filterByCity = function(city, callback) {
 
 /**
  * filterByOption allows you to specify the column and additional options to query. For example, passing 'city' and 'San Francisco' will yield listings from San Francisco.
- * @param  {String}   column   Any of the columns from profile table of the database: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Recommended columns for use are 'city', 'zipcode', and 'state'. 
+ * @param  {String}   column   Any of the columns from profile table of the database: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Recommended columns for use are 'city', 'zipcode', and 'state'.
  * @param  {String/Number}   option   Any specificity towards the column parameter. The parameter can either be a string or number, depending on which column is being used.
  * @param  {Function} callback Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful.
  */
@@ -78,4 +78,3 @@ module.exports.addUser = addUser;
 module.exports.filterByCity = filterByCity;
 module.exports.filterByOption = filterByOption;
 module.exports.addListing = addListing;
-

@@ -1,5 +1,5 @@
 const Promise = require('bluebird');
-const Sequelize = require('sequelize'); 
+const Sequelize = require('sequelize');
 
 /**
  * Exports a function that returns a query to create a users table if it does not exit, then creates a profiles table if it does not exist. Errors fall through the promise chain to console log an error message.
