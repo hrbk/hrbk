@@ -7,7 +7,10 @@ import View from './View.jsx';
 =======
 import Search from './Search.jsx';
 import data from '../../../testdata.json';
+<<<<<<< HEAD
 >>>>>>> add documentation for ListView
+=======
+>>>>>>> 4da7121aa45d9283ec06402f74a4b2e062d3fcb8
 
 const ListView = (props) => (
   /**
