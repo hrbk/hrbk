@@ -7,9 +7,9 @@ import Default from './DefaultList.jsx';
 const Home = (props) => {
   var render;
   if (props.filteredHomes.length) { 
-  	render = <ListView profiles={props.filteredHomes} />
+  	render = <ListView close={props.close} profiles={props.filteredHomes} />
   } else {
-  	render = <Default sortedCities={props.sortedCities} />
+  	render = <Default close={props.close} sortedCities={props.sortedCities} />
   }
 
   return (

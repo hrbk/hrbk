@@ -9,7 +9,7 @@ const DefaultList = (props) => {
       <br/>
       <Media.Left align="middle">
         <Media.Heading>
-          <h2> <Label class="head">Try </Label> </h2>
+          <h2> <Label style={head}> Try </Label> </h2>
           	
         </Media.Heading>
       </Media.Left>
@@ -38,6 +38,10 @@ const City = (props) => {
       <br/>
     </Media.Heading>
   );
+}
+
+var head = {
+  background: 'green',
 }
 
 export default DefaultList;

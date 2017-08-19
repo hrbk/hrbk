@@ -51,11 +51,16 @@ class App extends React.Component {
     })
   }
 
+  close() { 
+    this.setState( { open: !this.state.open } )
+  }
+
+
   render () {
     return (
       <div>
         <Header />
-        <Main onSearch={this.onSearch} sortedCities={this.state.sortedCities} filteredHomes={this.state.filteredHomes} />
+        <Main close={this.close.bind(this)} onSearch={this.onSearch} sortedCities={this.state.sortedCities} filteredHomes={this.state.filteredHomes} />
       </div>
     );
   }

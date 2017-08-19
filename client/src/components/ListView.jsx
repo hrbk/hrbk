@@ -8,7 +8,7 @@ const ListView = (props) => {
   
   return (
     <div>
-      {props.profiles.map((home, i) => <View key={i} home={home}/>)}
+      {props.profiles.map((home, i) => <View key={i} close={props.close} home={home}/>)}
     </div>
   )
 };
