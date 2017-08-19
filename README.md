@@ -55,7 +55,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 TEST BELOW:
 
-## Constants
+## Database
 
 <dl>
 <dt><a href="#connection">connection</a></dt>
