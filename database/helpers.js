@@ -18,7 +18,7 @@ var findUserByEmailAndPassword = function(email, password, callback) {
   var sql = `SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
   db.query(sql, function(err, res) {
     callback(res[0]);
-  })
+  });
 }
 
 var findUserByEmail = function(email, callback) {
@@ -26,14 +26,14 @@ var findUserByEmail = function(email, callback) {
   console.log('query:', sql);
   db.query(sql, function(err, res) {
     callback(res[0]);
-  })
+  });
 }
 
 var findUserAndProfileByEmail = function(email, callback) {
   var sql = `SELECT * FROM users INNER JOIN profiles ON users.id = profiles.userid WHERE users.email = ${email}`;
   db.query(sql, function(err, res) {
     callback(res[0]);
-  })
+  });
 }
 
 var findByID = function(id, callback) {
@@ -43,15 +43,6 @@ var findByID = function(id, callback) {
   });
 }
 
-var addUser = function(email, userphoto, firstname, lastname, password, salt, callback) {
-/**
- * @param {string} 
- * to select all, pass '*' as query
- * 
-*/
-
-  var options = [email, userphoto, firstname, lastname, password, salt]; 
-  
 /**
  * addUser function that passes given information into the users database table.
  * @param  {String} email    An email address associated with the user.
@@ -72,16 +63,6 @@ var addUser = function(email, userphoto, firstname, lastname, password, salt, ca
   });
 };
 
-//TODO: create USER FOREIGN KEY functionality
-var addListing = function(id, userObj, callback) {
-  //if user is going to be sent as stringified object;
-  var user = userObj;
-
-  var options = [id, user.address, user.city, user.state, 
-    err ? callback(err) : callback(res);
-  });
-};
-
 /**
  * If the information regarding a user's home or listing is being passed through as a single object rather than through separate parameters, use addListing
  * @param  {Object} userObj   An object containing the pertinent user information for the users table in the database. The keys of the object should be: 'id', 'address', 'city', 'zipcode', 'title', 'description', 'photopath'. Note that a separate query should eventually be created with the user's email address to find the user's id to link the information between user and profile together in the database.
@@ -97,7 +78,7 @@ var addListing = function(userObj) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
   db.query(sql, options, function(err, res) {
     console.log(options, res);
-    callback();
+    callback(res);
   });
 };
 
