@@ -5,6 +5,9 @@ import View from './View.jsx';
 //have a link to all the views url.. or something along those lines.
 
 const ListView = (props) => (
+  /**
+   * The ListView component maps through all filtered homes from a user's search into a list of div contained pieces of information.
+   */
     <div>
       {props.profiles.map((home, i) => <View key={i} home={home}/>)}
     </div>
