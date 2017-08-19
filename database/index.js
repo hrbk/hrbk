@@ -19,7 +19,6 @@ const db = Promise.promisifyAll(connection, { muliArgs: true });
 
 /**
  * Promise chain that first connects to the database, console logs the successfull connection, creates the database listed in the connection parameters if one does not already exists, and uses that database.
- * @type {[type]}
  */
 db.connectAsync()
   .then(() => console.log(`Connected to ${database} database as ID ${db.threadId}`))
