@@ -25,7 +25,8 @@ class App extends React.Component {
         description: '',
         photopath: ''
       },
-      isLoggedIn: false
+      isLoggedIn: false,
+      sortedCities: {}
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,6 +41,25 @@ class App extends React.Component {
     this.setState({
       userInfo: userInfo //reset state to the entire object again, instead of just changed prop
     })
+  }
+
+  componentDidMount() {
+    axios.get('/cities')
+      .then((response) => {
+        var sortedCities = {};
+        response.data.forEach(profile => {      
+          if (!sortedCities[profile.city]) {
+            sortedCities[profile.city] = [profile];
+          } else {
+            sortedCities[profile.city].push(profile);
+          }
+
+        });
+        this.setState({sortedCities: sortedCities});
+      })
+      .catch((error) => {
+        console.log('app mount error', error);
+      });
   }
 
   onSearch(searchFilter) {
@@ -57,6 +77,7 @@ class App extends React.Component {
       console.log('Error on Axios GET');
     })
   }
+
 
   onSignUpSubmit() {
     // var allItemsFilled = true;
@@ -123,6 +144,11 @@ class App extends React.Component {
       console.log('Error on submission');
     })
   }
+
+  close() { 
+    this.setState( { open: !this.state.open } )
+  }
+
 
   render () {
     return (
