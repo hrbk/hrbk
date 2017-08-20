@@ -13,7 +13,6 @@ class App extends React.Component {
       userInfo: {
         id: '',
         email: '',
-        userphoto: '',
         firstname: '',
         lastname: '',
         password: '',
@@ -47,7 +46,7 @@ class App extends React.Component {
     axios.get('/cities')
       .then((response) => {
         var sortedCities = {};
-        response.data.forEach(profile => {      
+        response.data.forEach(profile => {
           if (!sortedCities[profile.city]) {
             sortedCities[profile.city] = [profile];
           } else {
@@ -89,7 +88,7 @@ class App extends React.Component {
     // }
     // if (allItemsFilled) {
       axios.post('/signup', {email: this.state.userInfo.email, userphoto: this.state.userInfo.userphoto, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
-      
+
       .then((response) => {
         this.setState({
           userInfo: {
@@ -118,7 +117,7 @@ class App extends React.Component {
 
   onLoginSubmit() {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
-    
+
     .then((response) => {
       console.log(response.data);
       this.setState({
@@ -145,7 +144,7 @@ class App extends React.Component {
     })
   }
 
-  close() { 
+  close() {
     this.setState( { open: !this.state.open } )
   }
 
@@ -161,4 +160,3 @@ class App extends React.Component {
 }
 
 export default App;
-

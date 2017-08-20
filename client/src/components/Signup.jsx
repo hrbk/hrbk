@@ -12,7 +12,12 @@ class Signup extends React.Component {
     super(props);
 
     this.state = {
+      profileImg: {},
+      homeImg: {}
     }
+
+    this.onProfileUpload = this.onProfileUpload.bind(this)
+    this.onHomeUpload = this.onHomeUpload.bind(this)
   }
 
   handleChange(propertyName, e) {
@@ -20,10 +25,40 @@ class Signup extends React.Component {
   }
 
   onSubmit() {
-    this.props.onSignUpSubmit();
+    const images = {
+      profileImg: this.state.profileImg
+      // homeImg: this.state.homeImg,
+    }
+    this.props.onSignUpSubmit(images);
+  }
+
+  onProfileUpload(files) {
+    debugger;
+    const data = new FormData();
+    const file = files[0];
+    this.setState({
+      profileImg: file
+    });
+  }
+
+  onHomeUpload(files) {
+    const data = new FormData();
+    const file = files[0];
+    this.setState({
+      homeImg: file
+    });
   }
 
   render() {
+    const uploadStyles = {
+      width: '100%',
+      height: '34px',
+      borderWidth: '2px',
+      borderColor: '#ccc',
+      borderStyle: 'dashed',
+      borderSadius: '5px',
+      marginBottom: '10px'
+    }
     return (
       <div>
         <rb.Grid>
@@ -45,8 +80,11 @@ class Signup extends React.Component {
 
                 <rb.ControlLabel>Profile Picture</rb.ControlLabel>
                 <ImageUpload
+                  id="profile"
+                  onDrop={this.onProfileUpload}
+                  style={uploadStyles}
                   accept="image/jpeg, image/png">
-                  <div>Upload Image</div>
+                  <div>Upload Image {this.state.profileImg.name}</div>
                 </ImageUpload>
                 <rb.FormControl
                   style={spacing}
