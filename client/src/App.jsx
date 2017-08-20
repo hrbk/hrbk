@@ -78,7 +78,7 @@ class App extends React.Component {
   }
 
 
-  onSignUpSubmit() {
+  onSignUpSubmit(images) {
     // var allItemsFilled = true;
     // for (var key in this.state) {
     //   console.log(this.state[JSON.stringify(key)]);
@@ -87,14 +87,14 @@ class App extends React.Component {
     //   }
     // }
     // if (allItemsFilled) {
-      axios.post('/signup', {email: this.state.userInfo.email, userphoto: this.state.userInfo.userphoto, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
+      axios.post('/signup', {email: this.state.userInfo.email, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
 
       .then((response) => {
         this.setState({
           userInfo: {
             id: response.data.userid,
             email: response.data.email,
-            userphoto: response.data.userphoto,
+            // userphoto: response.data.userphoto,
             firstname: response.data.firstname,
             lastname: response.data.lastname,
             address: response.data.address,
@@ -113,6 +113,24 @@ class App extends React.Component {
         console.log('ERROR POSTING SIGNUP')
       })
     // }
+    const imageData = new FormData();
+    const file = images.profileImg.file;
+    imageData.append('file', file, file.name);
+    // const data = {}
+    axios.post('/upload', imageData, {
+      headers: {
+        'accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `${file.type}`,
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+
   }
 
   onLoginSubmit() {

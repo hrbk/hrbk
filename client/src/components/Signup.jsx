@@ -12,7 +12,9 @@ class Signup extends React.Component {
     super(props);
 
     this.state = {
-      profileImg: {},
+      profileImg: {
+        file: {}
+      },
       homeImg: {}
     }
 
@@ -25,19 +27,20 @@ class Signup extends React.Component {
   }
 
   onSubmit() {
+    const signup = this;
     const images = {
-      profileImg: this.state.profileImg
+      profileImg: signup.state.profileImg
       // homeImg: this.state.homeImg,
     }
     this.props.onSignUpSubmit(images);
   }
 
   onProfileUpload(files) {
-    debugger;
-    const data = new FormData();
     const file = files[0];
     this.setState({
-      profileImg: file
+      profileImg: {
+        file
+      }
     });
   }
 
@@ -84,7 +87,7 @@ class Signup extends React.Component {
                   onDrop={this.onProfileUpload}
                   style={uploadStyles}
                   accept="image/jpeg, image/png">
-                  <div>Upload Image {this.state.profileImg.name}</div>
+                  <div>Upload Image {this.state.profileImg.file.name}</div>
                 </ImageUpload>
                 <rb.FormControl
                   style={spacing}
