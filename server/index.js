@@ -67,6 +67,21 @@ app.get('/search', function(req, res) {
 	}
 });
 
+app.post('/upload', upload.single('file'), function(req, res) {
+  var file = 'uploads/' + req.file.originalname;
+  fs.rename(req.file.path, file, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.originalname
+      });
+    }
+  });
+});
+
 
 app.get('/cities', (req, res) => {
   dbHelpers.find('*', 'profiles', (data) => {
