@@ -14,6 +14,35 @@ var find = function(query, table, callback) {
   });
 };
 
+var findUserByEmailAndPassword = function(email, password, callback) {
+  var sql = `SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findUserByEmail = function(email, callback) {
+  var sql = `SELECT * FROM users WHERE email = ${email}`;
+  console.log('query:', sql);
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findUserAndProfileByEmail = function(email, callback) {
+  var sql = `SELECT * FROM users INNER JOIN profiles ON users.id = profiles.userid WHERE users.email = ${email}`;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  })
+}
+
+var findByID = function(id, callback) {
+  var sql = `SELECT * FROM users where id=` + id;
+  db.query(sql, function(err, res) {
+    callback(res[0]);
+  });
+}
+
 /**
  * addUser function that passes given information into the users database table.
  * @param  {String} email    An email address associated with the user.
@@ -30,24 +59,28 @@ var addUser = function(email, userphoto, firstname, lastname, password, salt, ca
     INSERT INTO users (email, userphoto, firstname, lastname, password, salt)
     VALUES (?, ?, ?, ?, ?, ?);`;
   db.query(sql, options, function(err, res) {
-    err ? callback(err) : callback(res); 
+    callback();
   });
 };
 
-/**
+  /**
  * If the information regarding a user's home or listing is being passed through as a single object rather than through separate parameters, use addListing
  * @param  {Object} userObj   An object containing the pertinent user information for the users table in the database. The keys of the object should be: 'id', 'address', 'city', 'zipcode', 'title', 'description', 'photopath'. Note that a separate query should eventually be created with the user's email address to find the user's id to link the information between user and profile together in the database.
  */
-var addListing = function(userObj) {
-  user = JSON.parse(userObj);
-  var options = [
-    user.id, user.address, user.city, user.state, 
-    user.zipcode, user.title, user.description, user.photopath
-  ]; 
+//TODO: create USER FOREIGN KEY functionality
+var addListing = function(id, userObj, callback) {
+  //if user is going to be sent as stringified object;
+  
+  var user = userObj;
+
+  var options = [id, user.address, user.city, user.state, user.zipcode, user.title, user.description, user.photopath]; 
   var sql = `
-    INSERT INTO profiles (id, address, city, state, zipcode, title, description, photopath)
+    INSERT INTO profiles (userid, address, city, state, zipcode, title, description, photopath)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
-  db.query(sql, options);
+  db.query(sql, options, function(err, res) {
+    console.log(options, res);
+    callback();
+  });
 };
 
 /**
@@ -78,4 +111,8 @@ module.exports.addUser = addUser;
 module.exports.filterByCity = filterByCity;
 module.exports.filterByOption = filterByOption;
 module.exports.addListing = addListing;
+module.exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
+module.exports.findByID = findByID;
+module.exports.findUserByEmail = findUserByEmail;
+module.exports.findUserAndProfileByEmail = findUserAndProfileByEmail;
 
