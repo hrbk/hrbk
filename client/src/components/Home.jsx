@@ -6,11 +6,11 @@ import Default from './DefaultList.jsx';
 
 const Home = (props) => {
   var render;
-  if (props.filteredHomes.length) { 
-  	render = <ListView close={props.close} profiles={props.filteredHomes} />
-  } else {
-  	render = <Default close={props.close} sortedCities={props.sortedCities} />
-  }
+  // if (props.filteredHomes.length) {
+  render = <ListView close={props.close} profiles={props.filteredHomes} />
+  // } else {
+  // 	render = <Default close={props.close} sortedCities={props.sortedCities} />
+  // }
 
   return (
     <div className="container">
@@ -21,4 +21,3 @@ const Home = (props) => {
 }
 
 export default Home;
-
