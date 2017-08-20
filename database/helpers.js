@@ -107,9 +107,8 @@ var filterByOption = function(column, option, callback) {
 };
 
 var updateTableById = function(table, column, value, id, callback) {
-  var sql = `
-    UPDATE ${table} SET ${column} = ${value} WHERE id = ${id};`;
-
+  var sql = `UPDATE ${table} SET ${column} = "${value}" WHERE id = "${id}";`;
+  console.log(sql);
   db.query(sql, (err, res) => {
     if (err) {
       callback(err);
@@ -121,7 +120,6 @@ var updateTableById = function(table, column, value, id, callback) {
 
 var updateUserByEmail = function(column, value, email, callback) {
   var sql = `UPDATE users SET ${column} = "${value}" WHERE email = "${email}";`;
-
   db.query(sql, (err, res) => {
     if (err) {
       callback(err);
@@ -140,5 +138,5 @@ module.exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 module.exports.findByID = findByID;
 module.exports.findUserByEmail = findUserByEmail;
 module.exports.findUserAndProfileByEmail = findUserAndProfileByEmail;
-
+module.exports.updateTableById = updateTableById;
 module.exports.updateUserByEmail = updateUserByEmail;

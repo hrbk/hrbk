@@ -87,10 +87,16 @@ app.post('/updateUserProfile', (req, res) => {
   const { filepath, userEmail } = req.body;
 
   dbHelpers.updateUserByEmail('userphoto', filepath, userEmail, (data) => {
-    console.log('user', data);
-    // dbHelpers.updateTableById(data[0].id, (data))
+    res.json(data);
   });
+});
 
+app.post('/updateListingImage', (req, res) => {
+  const { filepath, userId } = req.body;
+
+  dbHelpers.updateTableById('profiles', 'photopath', filepath, userId, (data) => {
+    res.json(data);
+  })
 });
 
 
