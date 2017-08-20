@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bCrypt = require('bcrypt-nodejs');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const app = express();
 /**
