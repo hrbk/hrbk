@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-//have a link to all the views url.. or something along those lines.
-/*IMPORTANT:
-  -photopath is not registered with dummydata;
-*/
+import { Link } from 'react-router-dom';
 
 const View = (props) => (
   <div className="home">
-    <h5 className="homeName"> Home: {props.home.title} </h5>
+    <Link to={`/homes=${props.home.id}`}>
+      <h5 className="homeName"> Home: {props.home.title} </h5>
+    </Link>
     <div> <img src={ `${props.home.photopath}`} /> </div>
     <div className="homeInfo">
       <span className="address"> {props.home.address} </span>
@@ -18,7 +16,7 @@ const View = (props) => (
       <span className="zip"> {' ' + props.home.zipcode} </span>
 
       <br/>
-      <span> Desciption: {props.home.description + '. \n'} </span>
+      <span> Description: {props.home.description + '.'} </span>
       <br/>
 
     </div>
