@@ -15,7 +15,9 @@ class Signup extends React.Component {
       profileImg: {
         file: {}
       },
-      homeImg: {}
+      homeImg: {
+        file: {}
+      }
     }
 
     this.onProfileUpload = this.onProfileUpload.bind(this)
@@ -29,8 +31,8 @@ class Signup extends React.Component {
   onSubmit() {
     const signup = this;
     const images = {
-      profileImg: signup.state.profileImg
-      // homeImg: this.state.homeImg,
+      profileImg: signup.state.profileImg,
+      homeImg: signup.state.homeImg
     }
     this.props.onSignUpSubmit(images);
   }
@@ -48,7 +50,9 @@ class Signup extends React.Component {
     const data = new FormData();
     const file = files[0];
     this.setState({
-      homeImg: file
+      homeImg: {
+        file
+      }
     });
   }
 
@@ -83,7 +87,7 @@ class Signup extends React.Component {
 
                 <rb.ControlLabel>Profile Picture</rb.ControlLabel>
                 <ImageUpload
-                  id="profile"
+                  id="profilephoto"
                   onDrop={this.onProfileUpload}
                   style={uploadStyles}
                   accept="image/jpeg, image/png">
@@ -198,15 +202,13 @@ class Signup extends React.Component {
                 </rb.FormControl>
 
                 <rb.ControlLabel>Home Photo</rb.ControlLabel>
-                <rb.FormControl
-                  style={spacing}
-                  type="text"
-                  name="photopath"
-                  value={this.state.photopath}
-                  placeholder="Add a Home Photo"
-                  maxLength={50}
-                  onChange={this.handleChange.bind(this, 'photopath')}>
-                </rb.FormControl>
+                <ImageUpload
+                  id="homephoto"
+                  onDrop={this.onHomeUpload}
+                  style={uploadStyles}
+                  accept="image/jpeg, image/png">
+                  <div>Upload Image {this.state.homeImg.file.name}</div>
+                </ImageUpload>
 
                 <rb.Button
                 style={{marginTop: '15px'}}

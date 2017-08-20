@@ -107,16 +107,26 @@ class App extends React.Component {
           },
           isLoggedIn: true
         })
+        // upload profile image
+        this.userPhotoSubmit(images.profileImg)
+        // upload home images
+        debugger;
+        console.log("userID!", response.data.userid);
+        this.homePhotoSubmit(images.homeImg, response.data.userid);
       })
 
       .catch((error) => {
         console.log('ERROR POSTING SIGNUP')
-      })
-    // }
+      });
+
+
+
+  }
+
+  userPhotoSubmit(image) {
     const imageData = new FormData();
-    const file = images.profileImg.file;
+    const file = image.file;
     imageData.append('file', file, file.name);
-    // const data = {}
     axios.post('/upload', imageData, {
       headers: {
         'accept': 'application/json',
@@ -125,13 +135,50 @@ class App extends React.Component {
       }
     })
     .then((response) => {
-      console.log(response);
+      const filepath = `uploads/${response.data.filename}`;
+      const userEmail = this.state.userInfo.email;
+      axios.post('/updateUserProfile', {filepath, userEmail})
+      .then((response) => {
+        console.log('updated userProfile');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  homePhotoSubmit(image, id) {
+    console.log(id);
+    const imageData = new FormData();
+    const file = image.file;
+    imageData.append('file', file, file.name);
+    axios.post('/upload', imageData, {
+      headers: {
+        'accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `${file.type}`,
+      }
+    })
+    .then((response) => {
+      const filepath = `uploads/${response.data.filename}`;
+      const userId = id;
+      axios.post('/', {filepath, userEmail})
+      .then((response) => {
+        console.log('updated userProfile');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     })
     .catch((error) => {
       console.log(error);
     })
 
   }
+
 
   onLoginSubmit() {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
@@ -140,7 +187,7 @@ class App extends React.Component {
       console.log(response.data);
       this.setState({
         userInfo: {
-          id: response.data.userid,
+          id: response.data.id,
           email: response.data.email,
           userphoto: response.data.userphoto,
           firstname: response.data.firstname,
