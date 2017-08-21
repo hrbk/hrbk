@@ -64,7 +64,8 @@ class Signup extends React.Component {
       borderColor: '#ccc',
       borderStyle: 'dashed',
       borderSadius: '5px',
-      marginBottom: '10px'
+      marginBottom: '10px',
+      padding: '5px 11px'
     }
     return (
       <div>
@@ -93,15 +94,6 @@ class Signup extends React.Component {
                   accept="image/jpeg, image/png">
                   <div>Upload Image {this.state.profileImg.file.name}</div>
                 </ImageUpload>
-                <rb.FormControl
-                  style={spacing}
-                  type="text"
-                  name="userphoto"
-                  value={this.state.userphoto}
-                  placeholder="Profile Picture"
-                  maxLength={50}
-                  onChange={this.handleChange.bind(this, 'userphoto')}>
-                </rb.FormControl>
 
                 <rb.ControlLabel>First Name</rb.ControlLabel>
                 <rb.FormControl

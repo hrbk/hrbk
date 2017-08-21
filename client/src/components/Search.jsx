@@ -57,11 +57,15 @@ class Search extends React.Component {
       root: 'form-group',
       input: 'form-control'
     }
+    const placesStyle = {
+      zIndex: '9'
+    }
     return (
-      <div className='container'>
+      <div style={placesStyle}>
         <PlacesAutocomplete
           inputProps={inputProps}
           onSelect={this.handleSelect}
+          style={placesStyle}
           onEnterKeyDown={this.handleSelect}
           highlightFirstSuggestion={true}
           googleLogo={false} />
