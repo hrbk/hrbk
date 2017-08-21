@@ -37,9 +37,12 @@ const View = (props) => {
   const headerStyle = {
     marginTop: '0'
   }
+  const colStyle = {
+    padding: '0 10px'
+  }
   return (
-      <Col xs={12} md={6}>
-        <Thumbnail style={thumbnailStyle} src={`${props.home.photopath}`} alt="homephoto">
+      <Col xs={12} md={6} style={colStyle}>
+        <Thumbnail style={thumbnailStyle} src={props.home.photopath} alt="homephoto">
           <div style={captionStyle}>
             <Image style={avatarStyle} src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAgxAAAAJDg3N2UwOTkzLWM4MDAtNDQ3Yi04YjNjLWVmODQwYmM1NmUwZg.jpg" circle />
             <Link style={linkStyle} to={`/homes=${props.home.id}`}>
