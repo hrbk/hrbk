@@ -3,8 +3,9 @@ import data from '../../../testdata.json';
 import axios from 'axios';
 import * as rb from 'react-bootstrap';
 
+
 class Profile extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       data: data.profiles[1]
