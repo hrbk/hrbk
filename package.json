@@ -49,10 +49,13 @@
     "babel-register": "^6.7.2",
     "enzyme": "^2.9.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "file-loader": "^0.11.2",
+    "image-webpack-loader": "^3.3.1",
     "jest": "^20.0.4",
     "jshint": "^2.9.5",
     "react-addons-test-utils": "^15.6.0",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^15.6.1",
+    "url-loader": "^0.5.9"
   },
   "babel": {
     "presets": [

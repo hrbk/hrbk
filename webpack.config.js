@@ -17,7 +17,11 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
        }
+      }, 
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: 'url-loader'
       }
-    ]
+    ] 
   }
 };
