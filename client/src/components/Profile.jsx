@@ -29,11 +29,12 @@ class Profile extends React.Component {
     }
   }
   render() {
-    const bgImage = Object.assign({}, profilephoto, {backgroundImage: `url(${this.state.data.photopath})`})
+    const bgImage = Object.assign({}, profilephoto, {backgroundImage: `url(${this.state.data.photopath})`});
     return (
     <div>
+      <img src={require(`../../../uploads/Headshot.png`)} />
       <rb.Jumbotron
-        style={bgImage}>
+        style={{background: `url(../../../uploads/Headshot.png)`}}>
       </rb.Jumbotron>
       <rb.Media style={profilehead}>
         <rb.Media.Body>
