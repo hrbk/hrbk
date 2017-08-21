@@ -85,6 +85,7 @@ module.exports = function(passport, LocalStrategy) {
               var currentUser = user;
               delete currentUser.password;
               delete currentUser.salt;
+              console.log(user);
 
               return done(null, currentUser);
             }
