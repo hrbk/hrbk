@@ -170,7 +170,6 @@ class App extends React.Component {
 
   }
 
-
   onLoginSubmit() {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
 
