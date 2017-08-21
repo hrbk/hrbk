@@ -7,7 +7,7 @@ const Header = () => (
   <Navbar staticTop componentClass="header" className="homeswap-nav">
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to="/">Home/Swap</Link>
+        <Link to="/">Hey/Swap</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
