@@ -3,7 +3,9 @@
 <dt><a href="#App.jsx">App.jsx</a></dt>
 <dt><a href="#index.jsx">index.jsx</a></dt>
 <dt><a href="#Dashboard.jsx">Dashboard.jsx</a></dt>
+<dt><a href="#DefaultList.jsx">DefaultList.jsx</a></dt>
 <dt><a href="#Header.jsx">Header.jsx</a></dt>
+<dt><a href="#Home.jsx">Home.jsx</a></dt>
 <dt><a href="#ListView.jsx">ListView.jsx</a></dt>
 <dt><a href="#Login.jsx">Login.jsx</a></dt>
 <dt><a href="#Main.jsx">Main.jsx</a></dt>
@@ -11,7 +13,6 @@
 <dt><a href="#Search.jsx">Search.jsx</a></dt>
 <dt><a href="#Signup.jsx">Signup.jsx</a></dt>
 <dt><a href="#View.jsx">View.jsx</a></dt>
-<dt><a href="#ViewPage.jsx">ViewPage.jsx</a></dt>
 </dl>
 
 <a name="App.jsx"></a>
@@ -28,11 +29,13 @@ onSearch uses an axios.get to send user input and uses setState to propagate the
 
 <a name="Dashboard.jsx"></a>
 ## Dashboard.jsx
-
+<a name="DefaultList.jsx"></a>
+## DefaultList.jsx
 <a name="Header.jsx"></a>
 ## Header.jsx
 The header component includes a home, dashboard, sign up and login buttons. The dashboard, sign up and login buttons will collapse on browser window resize into a menu bar.
-
+<a name="Home.jsx"></a>
+## Home.jsx
 <a name="ListView.jsx"></a>
 ## ListView.jsx
 The ListView component maps through all filtered homes from a user's search into a list of div contained pieces of information.
