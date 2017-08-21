@@ -11,8 +11,8 @@ const Main = (props) => (
   <main>
     <Switch>
       <Route exact path='/' render={(args) => <Home {...args} onSearch={props.onSearch} sortedCities={props.sortedCities} filteredHomes={props.filteredHomes} />} />
-      <Route path='/homes' render={(args) => <Home {...args} close={props.close} onSearch={props.onSearch} sortedCities={props.sortedCities} filteredHomes={props.filteredHomes} />} />
-      <Route path='/homes=:profileId' component={Profile} />
+      <Route path='/homes' render={(args) => <Home {...args} isLoggedIn={props.isLoggedIn} close={props.close} onSearch={props.onSearch} sortedCities={props.sortedCities} filteredHomes={props.filteredHomes} />} />
+      <Route path='/homes=:profileId' render={(args) => <Profile {...args} isLoggedIn={props.isLoggedIn} />} />
       <Route path='/dashboard' component={(args) => <Profile {...args} isLoggedIn={props.isLoggedIn} userInfo={props.userInfo} />} />
       <Route path='/signup' render={(args) => <Signup {...args} isLoggedIn={props.isLoggedIn} userInfo={props.userInfo} handleInputChange={props.handleInputChange} onSignUpSubmit={props.onSignUpSubmit}/>}/>
       <Route path='/login' render={(args) => <Login {...args} isLoggedIn={props.isLoggedIn} userInfo={props.userInfo} handleInputChange={props.handleInputChange} onLoginSubmit={props.onLoginSubmit}/>}/>
