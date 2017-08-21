@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import axios from 'axios';
+import request from 'superagent';
+const CLOUDINARY_UPLOAD_PRESET = 'ohicg81w';
+const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/homeswapimages/upload';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +37,38 @@ class App extends React.Component {
     this.onSignUpSubmit = this.onSignUpSubmit.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.onLogOut = this.onLogOut.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.homePhotoSubmit = this.homePhotoSubmit.bind(this)
   }
+
+  handleImageUpload(file) {
+   let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                       .field('file', file);
+
+   upload.end((err, response) => {
+     if (err) {
+       console.error(err);
+     }
+
+     if (response.body.secure_url !== '') {
+       const filepath = response.body.secure_url;
+       const userEmail = this.state.userInfo.email;
+       const userInfo = this.state.userInfo;
+       userInfo.userphoto = filepath;
+       this.setState({
+         userInfo
+       });
+       axios.post('/updateUserProfile', {filepath, userEmail})
+         .then((response) => {
+           console.log('updated userProfile');
+         })
+         .catch((error) => {
+           console.log(error);
+       });
+     }
+   });
+ }
 
   handleInputChange(propertyName, e) {
     const userInfo = this.state.userInfo;
@@ -102,9 +136,9 @@ class App extends React.Component {
           isLoggedIn: true
         })
         // upload profile image
-        this.userPhotoSubmit(images.profileImg);
+        this.handleImageUpload(images.profileImg.file);
         // upload home images
-        this.homePhotoSubmit(images.homeImg, response.data.id);
+        this.homePhotoSubmit(images.homeImg.file, response.data.id);
         cb();
       })
 
@@ -143,30 +177,33 @@ class App extends React.Component {
     })
   }
 
-  homePhotoSubmit(image, userId) {
-    const imageData = new FormData();
-    const file = image.file;
-    imageData.append('file', file, file.name);
-    axios.post('/upload', imageData, {
-      headers: {
-        'accept': 'application/json',
-        'Accept-Language': 'en-US,en;q=0.8',
-        'Content-Type': `${file.type}`,
+  homePhotoSubmit(file, userId) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
       }
-    })
-    .then((response) => {
-      const filepath = `uploads/${response.data.filename}`;
-      axios.post('/updateListingImage', {filepath, userId})
-      .then((response) => {
-        console.log('updated profile');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+
+      if (response.body.secure_url !== '') {
+        const filepath = response.body.secure_url;
+        const userInfo = this.state.userInfo;
+        userInfo.photopath = filepath;
+        this.setState({
+          userInfo
+        });
+        axios.post('/updateListingImage', {filepath, userId})
+          .then((response) => {
+            console.log('updated profile');
+          })
+          .catch((error) => {
+            console.log(error);
+        });
+      }
+    });
+
   }
 
   onLoginSubmit(cb) {
@@ -187,7 +224,7 @@ class App extends React.Component {
           title: response.data.title,
           description: response.data.description,
           photopath: response.data.photopath
-          
+
         },
         isLoggedIn: true
       })
