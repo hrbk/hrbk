@@ -2,6 +2,7 @@ import React from 'react';
 import * as rb from 'react-bootstrap';
 import axios from 'axios';
 import ImageUpload from 'react-dropzone';
+import { withRouter } from 'react-router-dom'
 
 var spacing = {
   marginBottom: '10px'
@@ -34,8 +35,16 @@ class Signup extends React.Component {
       profileImg: signup.state.profileImg,
       homeImg: signup.state.homeImg
     }
-    this.props.onSignUpSubmit(images);
-  }
+
+    var context = this;
+    this.props.onSignUpSubmit(images, function() {
+      if (context.props.isLoggedIn) {
+        context.props.history.push('/');
+      } else {
+        context.props.history.push('/login');
+      }
+    });
+  };
 
   onProfileUpload(files) {
     const file = files[0];

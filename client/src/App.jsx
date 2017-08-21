@@ -79,7 +79,7 @@ class App extends React.Component {
   }
 
 
-  onSignUpSubmit(images) {
+  onSignUpSubmit(images, cb) {
       axios.post('/signup', {email: this.state.userInfo.email, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
 
       .then((response) => {
@@ -104,14 +104,13 @@ class App extends React.Component {
         this.userPhotoSubmit(images.profileImg);
         // upload home images
         this.homePhotoSubmit(images.homeImg, response.data.id);
+        cb();
       })
 
       .catch((error) => {
+        cb();
         console.log('ERROR POSTING SIGNUP')
       });
-
-
-
   }
 
   userPhotoSubmit(image) {
@@ -169,7 +168,7 @@ class App extends React.Component {
     })
   }
 
-  onLoginSubmit() {
+  onLoginSubmit(cb) {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
 
     .then((response) => {
@@ -177,6 +176,7 @@ class App extends React.Component {
         userInfo: {
           id: response.data.id,
           email: response.data.email,
+          userphoto: response.data.userphoto,
           firstname: response.data.firstname,
           lastname: response.data.lastname,
           address: response.data.address,
@@ -185,13 +185,17 @@ class App extends React.Component {
           zipcode: response.data.zipcode,
           title: response.data.title,
           description: response.data.description,
+          photopath: response.data.photopath
+          
         },
         isLoggedIn: true
       })
+      cb();
     })
 
     .catch((error) => {
       console.log('Error on submission');
+      cb();
     })
   }
 

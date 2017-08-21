@@ -15,7 +15,14 @@ class Login extends React.Component {
   }
 
   onSubmit() {
-    this.props.onLoginSubmit();
+    var context = this;
+    this.props.onLoginSubmit(function() {
+      if (context.props.isLoggedIn) {
+        context.props.history.push('/');
+      } else {
+        context.props.history.push('/login');
+      }
+    });
   }
 
   render() {
