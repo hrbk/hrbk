@@ -49,7 +49,7 @@ class Profile extends React.Component {
             <rb.Image style={userphoto} src={data.users[0].userphoto} circle />
             <div style={caption} className='caption'>{data.users[0].firstname} {data.users[0].lastname}</div>
             <rb.Button bsStyle='primary' block>
-              Contact
+              <a style={link} href={`mailto:${email}`}>Contact</a>
             </rb.Button>
           </rb.Thumbnail>
         </rb.Media.Right>
@@ -66,6 +66,10 @@ class Profile extends React.Component {
 }
 
 //styles
+var link = {
+  textDecoration: 'none',
+  color: '#fff'
+}
 var profilephoto = {
   marginTop: '-20px',
   position: 'relative',
