@@ -13,7 +13,6 @@ class App extends React.Component {
       userInfo: {
         id: '',
         email: '',
-        userphoto: '',
         firstname: '',
         lastname: '',
         password: '',
@@ -47,7 +46,7 @@ class App extends React.Component {
     axios.get('/cities')
       .then((response) => {
         var sortedCities = {};
-        response.data.forEach(profile => {      
+        response.data.forEach(profile => {
           if (!sortedCities[profile.city]) {
             sortedCities[profile.city] = [profile];
           } else {
@@ -79,23 +78,15 @@ class App extends React.Component {
   }
 
 
-  onSignUpSubmit() {
-    // var allItemsFilled = true;
-    // for (var key in this.state) {
-    //   console.log(this.state[JSON.stringify(key)]);
-    //   if (this.state.key.length === 0) {
-    //     allItemsFilled = false;
-    //   }
-    // }
-    // if (allItemsFilled) {
-      axios.post('/signup', {email: this.state.userInfo.email, userphoto: this.state.userInfo.userphoto, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
-      
+  onSignUpSubmit(images) {
+      axios.post('/signup', {email: this.state.userInfo.email, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
+
       .then((response) => {
         this.setState({
           userInfo: {
-            id: response.data.userid,
+            id: response.data.id,
             email: response.data.email,
-            userphoto: response.data.userphoto,
+            userphoto: `uploads/${images.profileImg.file.name}`,
             firstname: response.data.firstname,
             lastname: response.data.lastname,
             address: response.data.address,
@@ -104,28 +95,87 @@ class App extends React.Component {
             zipcode: response.data.zipcode,
             title: response.data.title,
             description: response.data.description,
-            photopath: response.data.photopath,
+            photopath: `uploads/${images.homeImg.file.name}`
           },
           isLoggedIn: true
         })
+        // upload profile image
+        this.userPhotoSubmit(images.profileImg);
+        // upload home images
+        this.homePhotoSubmit(images.homeImg, response.data.id);
       })
 
       .catch((error) => {
         console.log('ERROR POSTING SIGNUP')
+      });
+
+
+
+  }
+
+  userPhotoSubmit(image) {
+    const imageData = new FormData();
+    const file = image.file;
+    imageData.append('file', file, file.name);
+
+    axios.post('/upload', imageData, {
+      headers: {
+        'accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `${file.type}`,
+      }
+    })
+    .then((response) => {
+      const filepath = `uploads/${response.data.filename}`;
+      const userEmail = this.state.userInfo.email;
+
+      axios.post('/updateUserProfile', {filepath, userEmail})
+      .then((response) => {
+        console.log('updated userProfile');
       })
-    // }
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  homePhotoSubmit(image, userId) {
+    const imageData = new FormData();
+    const file = image.file;
+    imageData.append('file', file, file.name);
+    axios.post('/upload', imageData, {
+      headers: {
+        'accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `${file.type}`,
+      }
+    })
+    .then((response) => {
+      const filepath = `uploads/${response.data.filename}`;
+      axios.post('/updateListingImage', {filepath, userId})
+      .then((response) => {
+        console.log('updated profile');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   onLoginSubmit() {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
-    
+
     .then((response) => {
-      console.log(response.data);
       this.setState({
         userInfo: {
-          id: response.data.userid,
+          id: response.data.id,
           email: response.data.email,
-          userphoto: response.data.userphoto,
           firstname: response.data.firstname,
           lastname: response.data.lastname,
           address: response.data.address,
@@ -134,7 +184,6 @@ class App extends React.Component {
           zipcode: response.data.zipcode,
           title: response.data.title,
           description: response.data.description,
-          photopath: response.data.photopath,
         },
         isLoggedIn: true
       })
@@ -145,7 +194,7 @@ class App extends React.Component {
     })
   }
 
-  close() { 
+  close() {
     this.setState( { open: !this.state.open } )
   }
 
@@ -161,4 +210,3 @@ class App extends React.Component {
 }
 
 export default App;
-

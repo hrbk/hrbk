@@ -1,4 +1,4 @@
-const db = require('./index'); 
+const db = require('./index');
 
 /**
  * A simple find function for the MySql database.
@@ -10,7 +10,7 @@ var find = function(query, table, callback) {
   table = table || 'profiles';
   var sql = `SELECT ${query} FROM ${table};`;
   db.query(sql, function(err, res) {
-    callback(res); 
+    callback(res);
   });
 };
 
@@ -53,8 +53,8 @@ var findByID = function(id, callback) {
  * @param  {Function} callback   Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful.
  */
 var addUser = function(email, userphoto, firstname, lastname, password, salt, callback) {
-  var options = [email, userphoto, firstname, lastname, password, salt]; 
-  
+  var options = [email, userphoto, firstname, lastname, password, salt];
+
   var sql = `
     INSERT INTO users (email, userphoto, firstname, lastname, password, salt)
     VALUES (?, ?, ?, ?, ?, ?);`;
@@ -70,10 +70,10 @@ var addUser = function(email, userphoto, firstname, lastname, password, salt, ca
 //TODO: create USER FOREIGN KEY functionality
 var addListing = function(id, userObj, callback) {
   //if user is going to be sent as stringified object;
-  
+
   var user = userObj;
 
-  var options = [id, user.address, user.city, user.state, user.zipcode, user.title, user.description, user.photopath]; 
+  var options = [id, user.address, user.city, user.state, user.zipcode, user.title, user.description, user.photopath];
   var sql = `
     INSERT INTO profiles (userid, address, city, state, zipcode, title, description, photopath)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
@@ -96,7 +96,7 @@ var filterByCity = function(city, callback) {
 
 /**
  * filterByOption allows you to specify the column and additional options to query. For example, passing 'city' and 'San Francisco' will yield listings from San Francisco.
- * @param  {String}   column   Any of the columns from profile table of the database: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Recommended columns for use are 'city', 'zipcode', and 'state'. 
+ * @param  {String}   column   Any of the columns from profile table of the database: 'id', 'userid', 'address', 'city', 'state', 'zipcode', 'title', 'description', 'photopath'. Recommended columns for use are 'city', 'zipcode', and 'state'.
  * @param  {String/Number}   option   Any specificity towards the column parameter. The parameter can either be a string or number, depending on which column is being used.
  * @param  {Function} callback Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful.
  */
@@ -105,6 +105,29 @@ var filterByOption = function(column, option, callback) {
     SELECT * FROM profiles WHERE ${column} = "${option}";`;
   db.query(sql, (err, res) => err ? callback(err) : callback(res));
 };
+
+var updateTableById = function(table, column, value, id, callback) {
+  var sql = `UPDATE ${table} SET ${column} = "${value}" WHERE id = "${id}";`;
+  console.log(sql);
+  db.query(sql, (err, res) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(res[0])
+    }
+  });
+}
+
+var updateUserByEmail = function(column, value, email, callback) {
+  var sql = `UPDATE users SET ${column} = "${value}" WHERE email = "${email}";`;
+  db.query(sql, (err, res) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(res)
+    }
+  });
+}
 
 module.exports.find = find;
 module.exports.addUser = addUser;
@@ -115,4 +138,5 @@ module.exports.findUserByEmailAndPassword = findUserByEmailAndPassword;
 module.exports.findByID = findByID;
 module.exports.findUserByEmail = findUserByEmail;
 module.exports.findUserAndProfileByEmail = findUserAndProfileByEmail;
-
+module.exports.updateTableById = updateTableById;
+module.exports.updateUserByEmail = updateUserByEmail;

@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bCrypt = require('bcrypt-nodejs');
+const multer  = require('multer');
+const fs = require('fs');
+const upload = multer({ dest: 'uploads/' });
 
 const app = express();
 /**
@@ -63,6 +66,37 @@ app.get('/search', function(req, res) {
 			res.json(data);
 		});
 	}
+});
+
+app.post('/upload', upload.single('file'), function(req, res) {
+  var file = req.file.destination + req.file.originalname;
+  fs.rename(req.file.path, file, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.originalname
+      });
+    }
+  });
+});
+
+app.post('/updateUserProfile', (req, res) => {
+  const { filepath, userEmail } = req.body;
+
+  dbHelpers.updateUserByEmail('userphoto', filepath, userEmail, (data) => {
+    res.json(data);
+  });
+});
+
+app.post('/updateListingImage', (req, res) => {
+  const { filepath, userId } = req.body;
+
+  dbHelpers.updateTableById('profiles', 'photopath', filepath, userId, (data) => {
+    res.json(data);
+  })
 });
 
 
