@@ -32,9 +32,9 @@ class Profile extends React.Component {
     const bgImage = Object.assign({}, profilephoto, {backgroundImage: `url(${this.state.data.photopath})`});
     return (
     <div>
-      <img src={require(`../../../uploads/Headshot.png`)} />
+      
       <rb.Jumbotron
-        style={{background: `url(../../../uploads/Headshot.png)`}}>
+        style={{}}>
       </rb.Jumbotron>
       <rb.Media style={profilehead}>
         <rb.Media.Body>
@@ -47,11 +47,11 @@ class Profile extends React.Component {
         </rb.Media.Body>
         <rb.Media.Right>
           <rb.Thumbnail style={thumb}>
-            <rb.Image style={userphoto} src={data.users[0].userphoto} circle />
-            <div style={caption} className='caption'>{data.users[0].firstname} {data.users[0].lastname}</div>
-            <rb.Button bsStyle='primary' block>
-              <a style={link} href={`mailto:${email}`}>Contact</a>
-            </rb.Button>
+            <rb.Image style={userphoto} src={this.state.data.userphoto} circle />
+            <div style={caption} className='caption'>{this.state.data.firstname} {this.state.data.lastname}</div>
+            {this.props.isLoggedIn ? <rb.Button bsStyle='primary' block>
+              <a style={link} href={`mailto:${this.state.data.email}`}>Contact</a>
+            </rb.Button> : <rb.Button block onClick={() => this.props.history.push('/login')}>Login to Contact this Host!</rb.Button>}
           </rb.Thumbnail>
         </rb.Media.Right>
       </rb.Media>
