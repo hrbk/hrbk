@@ -82,7 +82,6 @@ class App extends React.Component {
       axios.post('/signup', {email: this.state.userInfo.email, firstname: this.state.userInfo.firstname, lastname: this.state.userInfo.lastname, password: this.state.userInfo.password, address: this.state.userInfo.address, city: this.state.userInfo.city, state: this.state.userInfo.state, zipcode: parseInt(this.state.userInfo.zipcode), title: this.state.userInfo.title, description: this.state.userInfo.description, photopath: this.state.userInfo.photopath})
 
       .then((response) => {
-        debugger;
         this.setState({
           userInfo: {
             id: response.data.id,
@@ -173,7 +172,6 @@ class App extends React.Component {
     axios.post('/login', {email: this.state.userInfo.email, password: this.state.userInfo.password})
 
     .then((response) => {
-      console.log(response.data);
       this.setState({
         userInfo: {
           id: response.data.id,
