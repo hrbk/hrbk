@@ -12,7 +12,8 @@ class Profile extends React.Component {
   }
   componentDidMount() {
     const profileId = this.props.match.params.profileId;
-    axios.get(`/search/${profileId}`)
+    if (profileId) { //for entering specific profile of another user
+      axios.get(`/search/${profileId}`)
       .then((response) => {
         this.setState({
           data: response.data[0]
@@ -21,6 +22,11 @@ class Profile extends React.Component {
       .catch((error) => {
         console.log('error', error);
       });
+    } else { //in case of entering dashboard and entering user's own profile
+      this.setState({
+        data: this.props.userInfo
+      })
+    }
   }
   render() {
     const bgImage = Object.assign({}, profilephoto, {backgroundImage: `url(${this.state.data.photopath})`})

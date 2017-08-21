@@ -32,6 +32,7 @@ class App extends React.Component {
     this.onSearch = this.onSearch.bind(this);
     this.onSignUpSubmit = this.onSignUpSubmit.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.onLogOut = this.onLogOut.bind(this);
   }
 
   handleInputChange(propertyName, e) {
@@ -198,11 +199,35 @@ class App extends React.Component {
     this.setState( { open: !this.state.open } )
   }
 
+  onLogOut() {
+    this.setState({
+      searchTerm: '',
+      filteredHomes: [],
+      userInfo: {
+        id: '',
+        email: '',
+        userphoto: '',
+        firstname: '',
+        lastname: '',
+        password: '',
+        address: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        title: '',
+        description: '',
+        photopath: ''
+      },
+      isLoggedIn: false,
+      sortedCities: {}
+    })
+  }
+
 
   render () {
     return (
       <div>
-        <Header />
+        <Header isLoggedIn={this.state.isLoggedIn} onLogOut={this.onLogOut}/>
         <Main filteredHomes={this.state.filteredHomes} userInfo={this.state.userInfo} isLoggedIn={this.state.isLoggedIn} handleInputChange={this.handleInputChange} onSearch={this.onSearch} onSignUpSubmit= {this.onSignUpSubmit} onLoginSubmit={this.onLoginSubmit} />
       </div>
     );

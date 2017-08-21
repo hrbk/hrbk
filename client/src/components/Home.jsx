@@ -11,7 +11,6 @@ const Home = (props) => {
   // } else {
   // 	render = <Default close={props.close} sortedCities={props.sortedCities} />
   // }
-
   return (
     <div className="container">
       <Search {...props} onSearch={props.onSearch} />
