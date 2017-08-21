@@ -13,6 +13,7 @@ class App extends React.Component {
       userInfo: {
         id: '',
         email: '',
+        userphoto: '',
         firstname: '',
         lastname: '',
         password: '',
