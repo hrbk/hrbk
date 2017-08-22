@@ -104,6 +104,7 @@ class App extends React.Component {
       }
     })
     .then((response) => {
+      console.log(response.data);
       this.setState({
         filteredHomes: response.data
       });
