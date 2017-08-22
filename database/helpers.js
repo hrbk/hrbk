@@ -90,8 +90,14 @@ var addListing = function(id, userObj, callback) {
  */
 var filterByCity = function(city, callback) {
   var sql = `
-    SELECT * FROM profiles WHERE city = "${city}";`;
-  db.query(sql, (err, res) => (err ? callback(err) : callback(res)));
+    SELECT * FROM profiles INNER JOIN users ON users.id = profiles.userid  WHERE city = "${city}";`;
+  db.query(sql, function(err, res) {
+    if (err) {
+      throw err;
+    } else {
+      callback(res);
+    }
+  }); 
 };
 
 /**
@@ -101,9 +107,15 @@ var filterByCity = function(city, callback) {
  * @param  {Function} callback Two types of callbacks that can be invoked, depending on whether an error has occurred or addition to the database was successful.
  */
 var filterByOption = function(column, option, callback) {
-  var sql = `
-    SELECT * FROM profiles WHERE ${column} = "${option}";`;
-  db.query(sql, (err, res) => err ? callback(err) : callback(res));
+  var sql = 
+  `SELECT * FROM profiles INNER JOIN users ON users.id = profiles.userid  WHERE ${column} = "${option}";`;
+  db.query(sql, function(err, res) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(res);
+    }
+  });
 };
 
 var updateTableById = function(table, column, value, id, callback) {

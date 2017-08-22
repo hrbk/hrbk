@@ -53,6 +53,7 @@ app.get('/search', function(req, res) {
 	const { city, state, country } = JSON.parse(req.query.data);
 	if ( city ) {
 		dbHelpers.filterByCity(city, (data) => {
+      console.log('RESPONSE', data);
 			res.json(data);
 		});
 	}
@@ -107,7 +108,8 @@ app.get('/cities', (req, res) => {
 });
 
 app.get('/search/:profileId', (req, res) => {
-	dbHelpers.filterByOption('id', req.params.profileId, (data) => {
+	dbHelpers.filterByOption('userid', req.params.profileId, (data) => {
+    console.log(data);
 		res.json(data);
 	})
 });
